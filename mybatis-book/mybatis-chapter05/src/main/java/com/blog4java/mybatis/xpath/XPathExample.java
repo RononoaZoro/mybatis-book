@@ -50,6 +50,7 @@ public class XPathExample {
                 userList.add(userEntity);
             }
             System.out.println(JSON.toJSONString(userList));
+            System.out.println(userList.get(0).getCreateTime());
         } catch (Exception e) {
             throw new BuilderException("Error creating document instance.  Cause: " + e, e);
         }
