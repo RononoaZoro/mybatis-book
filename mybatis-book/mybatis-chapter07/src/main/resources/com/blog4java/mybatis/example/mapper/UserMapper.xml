@@ -15,7 +15,7 @@
     <select id="listAllUser"
             flushCache="false"
             useCache="true"
-            resultType="com.blog4java.mybatis.example.entity.User" >
+            resultType="com.blog4java.mybatis.example.entity.UserEntity" >
         select
         <include refid="userAllField"/>
         from user
