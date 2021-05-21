@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.blog4java.mybatis.example.mapper.UserMapper">
+<mapper namespace="com.blog4java.mybatis.com.luo.example.mapper.UserMapper">
 
-    <resultMap id="detailMap" type="com.blog4java.mybatis.example.entity.User">
-        <collection property="orders" ofType="com.blog4java.mybatis.example.entity.Order"
-                    select="com.blog4java.mybatis.example.mapper.OrderMapper.listOrdersByUserId"
+    <resultMap id="detailMap" type="com.blog4java.mybatis.com.luo.example.entity.User">
+        <collection property="orders" ofType="com.blog4java.mybatis.com.luo.example.entity.Order"
+                    select="com.blog4java.mybatis.com.luo.example.mapper.OrderMapper.listOrdersByUserId"
                     javaType="java.util.ArrayList"
                     column="id">
         </collection>
     </resultMap>
 
-    <resultMap autoMapping="true" id="detailMapForJoin" type="com.blog4java.mybatis.example.entity.User">
-        <collection property="orders" ofType="com.blog4java.mybatis.example.entity.Order">
+    <resultMap autoMapping="true" id="detailMapForJoin" type="com.blog4java.mybatis.com.luo.example.entity.User">
+        <collection property="orders" ofType="com.blog4java.mybatis.com.luo.example.entity.Order">
             <id column="id" property="id"></id>
             <result column="createTime" property="createTime"></result>
             <result column="userId" property="userId"></result>
@@ -22,7 +22,7 @@
         </collection>
     </resultMap>
     
-    <resultMap id="userDetailMap" type="com.blog4java.mybatis.example.entity.User">
+    <resultMap id="userDetailMap" type="com.blog4java.mybatis.com.luo.example.entity.User">
         <result property="id" column="id"></result>
         <result property="name" column="name"></result>
         <result property="createTime" column="createTime"></result>
@@ -30,11 +30,11 @@
         <result property="phone" column="phone"></result>
     </resultMap>
     
-    <resultMap id="detailMapForDiscriminator" type="com.blog4java.mybatis.example.entity.User">
+    <resultMap id="detailMapForDiscriminator" type="com.blog4java.mybatis.com.luo.example.entity.User">
         <discriminator javaType="String" column="gender">
-            <case value="female" resultType="com.blog4java.mybatis.example.entity.User">
-                <collection property="orders" ofType="com.blog4java.mybatis.example.entity.Order"
-                            select="com.blog4java.mybatis.example.mapper.OrderMapper.listOrdersByUserId"
+            <case value="female" resultType="com.blog4java.mybatis.com.luo.example.entity.User">
+                <collection property="orders" ofType="com.blog4java.mybatis.com.luo.example.entity.Order"
+                            select="com.blog4java.mybatis.com.luo.example.mapper.OrderMapper.listOrdersByUserId"
                             javaType="java.util.ArrayList"
                             column="id">
                 </collection>
@@ -42,7 +42,7 @@
         </discriminator>
     </resultMap>
 
-    <select id="getUserById" resultType="com.blog4java.mybatis.example.entity.User">
+    <select id="getUserById" resultType="com.blog4java.mybatis.com.luo.example.entity.User">
         select * from user where id = #{userId}
     </select>
 

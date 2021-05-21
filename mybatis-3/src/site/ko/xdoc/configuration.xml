@@ -57,7 +57,7 @@
       </ul>
       <subsection name="properties">
         <p>이 설정은 외부에 옮길 수 있다. 자바 프로퍼티 파일 인스턴스에 설정할 수도 있고 properties 엘리먼트의 하위 엘리먼트에 둘수도 있다. 예를들면:</p>
-        <source><![CDATA[<properties resource="org/mybatis/example/config.properties">
+        <source><![CDATA[<properties resource="org/mybatis/com.luo.example/config.properties">
   <property name="username" value="dev_user"/>
   <property name="password" value="F2Fa3!33TYyg"/>
 </properties>]]></source>
@@ -99,7 +99,7 @@ SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environ
         </p>
 
         <source><![CDATA[
-<properties resource="org/mybatis/example/config.properties">
+<properties resource="org/mybatis/com.luo.example/config.properties">
   <!-- ... -->
   <property name="org.apache.ibatis.parsing.PropertyParser.enable-default-value" value="true"/> <!-- 이 기능을 활성화한다. -->
 </properties>]]></source>
@@ -112,7 +112,7 @@ SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environ
         </p>
 
         <source><![CDATA[
-<properties resource="org/mybatis/example/config.properties">
+<properties resource="org/mybatis/com.luo.example/config.properties">
   <!-- ... -->
   <property name="org.apache.ibatis.parsing.PropertyParser.default-value-separator" value="?:"/> <!-- separator 의 기본값을 변경한다. -->
 </properties>]]></source>
@@ -1265,7 +1265,7 @@ public class ExampleTypeHandler extends BaseTypeHandler<String> {
 
         <source><![CDATA[<!-- mybatis-config.xml -->
 <typeHandlers>
-  <typeHandler handler="org.mybatis.example.ExampleTypeHandler"/>
+  <typeHandler handler="org.mybatis.com.luo.example.ExampleTypeHandler"/>
 </typeHandlers>
 ]]></source>
 
@@ -1303,7 +1303,7 @@ public class ExampleTypeHandler extends BaseTypeHandler<String> {
         <p>마지막으로 마이바티스로 하여금 TypeHandler를 찾도록 할수 있다:</p>
         <source><![CDATA[<!-- mybatis-config.xml -->
 <typeHandlers>
-  <package name="org.mybatis.example"/>
+  <package name="org.mybatis.com.luo.example"/>
 </typeHandlers>
 ]]></source>
 
@@ -1429,7 +1429,7 @@ public class ExampleObjectFactory extends DefaultObjectFactory {
 ]]></source>
 
         <source><![CDATA[<!-- mybatis-config.xml -->
-<objectFactory type="org.mybatis.example.ExampleObjectFactory">
+<objectFactory type="org.mybatis.com.luo.example.ExampleObjectFactory">
   <property name="someProperty" value="100"/>
 </objectFactory>]]></source>
         <p>ObjectFactory인터페이스는 매우 간단한다. 
@@ -1486,7 +1486,7 @@ public class ExamplePlugin implements Interceptor {
 
         <source><![CDATA[<!-- mybatis-config.xml -->
 <plugins>
-  <plugin interceptor="org.mybatis.example.ExamplePlugin">
+  <plugin interceptor="org.mybatis.com.luo.example.ExamplePlugin">
     <property name="someProperty" value="100"/>
   </plugin>
 </plugins>]]></source>

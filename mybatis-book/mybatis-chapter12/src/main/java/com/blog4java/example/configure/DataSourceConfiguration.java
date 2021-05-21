@@ -17,7 +17,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(basePackages = {"com.blog4java.example.mapper"},
+@MapperScan(basePackages = {"com.blog4java.com.luo.example.mapper"},
         sqlSessionTemplateRef="sqlSessionTemplate")
 public class DataSourceConfiguration {
     @Bean(name = "dataSource")
@@ -38,7 +38,7 @@ public class DataSourceConfiguration {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
         bean.setMapperLocations(new PathMatchingResourcePatternResolver()
-                .getResources("classpath:com/blog4java/example/mapper/*.xml"));
+                .getResources("classpath:com/blog4java/com.luo.example/mapper/*.xml"));
         return bean.getObject();
     }
 

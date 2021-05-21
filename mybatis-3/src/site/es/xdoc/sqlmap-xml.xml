@@ -426,7 +426,7 @@ Por ejemplo, si la columna id de la tabla Author del ejemplo siguiente fuera aut
 </select>]]></source>
 
         <p>
-          Property value can be also used in include refid attribute or property values inside include clause, for example:
+          Property value can be also used in include refid attribute or property values inside include clause, for com.luo.example:
         </p>
 
         <source><![CDATA[<sql id="sometable">
@@ -908,7 +908,7 @@ public class User {
 
         <p>
           In order to inject the results into the constructor, MyBatis needs to identify the constructor for somehow.
-          In the following example, MyBatis searches a constructor declared with three parameters: <code>java.lang.Integer</code>, <code>java.lang.String</code> and <code>int</code> in this order.
+          In the following com.luo.example, MyBatis searches a constructor declared with three parameters: <code>java.lang.Integer</code>, <code>java.lang.String</code> and <code>int</code> in this order.
         </p>
 
         <source><![CDATA[<constructor>
@@ -920,7 +920,7 @@ public class User {
         <p>
           When you are dealing with a constructor with many parameters, maintaining the order of arg elements is error-prone.<br />
           Since 3.4.3, by specifying the name of each parameter, you can write arg elements in any order. To reference constructor parameters by their names, you can either add <code>@Param</code> annotation to them or compile the project with '-parameters' compiler option and enable <code>useActualParamName</code> (this option is enabled by default).
-          The following example is valid for the same constructor even though the order of the second and the third parameters does not match with the declared order.
+          The following com.luo.example is valid for the same constructor even though the order of the second and the third parameters does not match with the declared order.
         </p>
 
         <source><![CDATA[<constructor>

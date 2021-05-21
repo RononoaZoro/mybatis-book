@@ -36,11 +36,12 @@
 	</environments>
 
 	<mappers>
-		<mapper resource="com/blog4java/mybatis/example/mapper/UserMapper.xml"/>
+		<mapper resource="com/blog4java/mybatis/com.luo.example/mapper/UserMapper.xml"/>
+		<mapper resource="com/blog4java/mybatis/com.luo.example/mapper/UserMapper1.xml"/>
 		<!--
-		<mapper resource="file:///mybatis/com/blog4java/mybatis/example/mapper/UserMapper.xml"/>
-		<mapper class="com.blog4java.mybatis.com.blog4java.mybatis.example.mapper.UserMapper"/>
-		<package name="com.blog4java.mybatis.com.blog4java.mybatis.example.mapper"/>
+		<mapper resource="file:///mybatis/com/blog4java/mybatis/com.luo.example/mapper/UserMapper.xml"/>
+		<mapper class="com.blog4java.mybatis.com.blog4java.mybatis.com.luo.example.mapper.UserMapper"/>
+		<package name="com.blog4java.mybatis.com.blog4java.mybatis.com.luo.example.mapper"/>
 		-->
 	</mappers>
 </configuration>

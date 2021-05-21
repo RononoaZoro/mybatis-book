@@ -103,7 +103,7 @@ org.apache.ibatis.logging.LogFactory.useStdOutLogging();]]></source>
           Paso 2: Configurar Log4j
         </h4>
         <p>Configurar Log4j es sencillo. Supongamos que quieres habilitar el log para este mapper:</p>
-        <source><![CDATA[package org.mybatis.example;
+        <source><![CDATA[package org.mybatis.com.luo.example;
 public interface BlogMapper {
   @Select("SELECT * FROM blog WHERE id = #{id}")
   Blog selectBlog(int id);
@@ -114,23 +114,23 @@ public interface BlogMapper {
         <source><![CDATA[# Global logging configuration
 log4j.rootLogger=ERROR, stdout
 # MyBatis logging configuration...
-log4j.logger.org.mybatis.example.BlogMapper=TRACE
+log4j.logger.org.mybatis.com.luo.example.BlogMapper=TRACE
 # Console output...
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n]]></source>
-        <p>El fichero anterior hará que log4j reporte información detallada para <code>org.mybatis.example.BlogMapper</code> e información de errores para el resto de las clases de tu aplicación.</p>
+        <p>El fichero anterior hará que log4j reporte información detallada para <code>org.mybatis.com.luo.example.BlogMapper</code> e información de errores para el resto de las clases de tu aplicación.</p>
         <p>Si quieres activar un nivel más fino de logging puedes activar el logging para statements específicos en lugar de para todo un mapper. La siguiente línea activa el logging sólo para el statement <code>selectBlog</code>:</p>
 
-        <source>log4j.logger.org.mybatis.example.BlogMapper.selectBlog=TRACE</source>
+        <source>log4j.logger.org.mybatis.com.luo.example.BlogMapper.selectBlog=TRACE</source>
         
         <p>Si por el contrario quieres activar el log para un grupo de mappers debes añadir un logger para el paquete raiz donde residen tus mappers:</p>
 
-        <source>log4j.logger.org.mybatis.example=TRACE</source>
+        <source>log4j.logger.org.mybatis.com.luo.example=TRACE</source>
         
         <p>Hay consultas que pueden devolver una gran cantidad de datos. En esos casos puedes querer ver las sentencias SQL pero no los datos. Para conseguirlo las sentencias se loguean con nivel DEBUG (FINE en JDK) y los resultados con TRACE (FINER en JDK), por tanto si quieres ver la sentencia pero no el resultado establece el nivel a DEBUG</p>
 
-        <source>log4j.logger.org.mybatis.example=DEBUG</source>
+        <source>log4j.logger.org.mybatis.com.luo.example=DEBUG</source>
         
         <p>Y si estás usando ficheros XML como este?</p>
 
@@ -138,7 +138,7 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n]]></source>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.example.BlogMapper">
+<mapper namespace="org.mybatis.com.luo.example.BlogMapper">
   <select id="selectBlog" resultType="Blog">
     select * from Blog where id = #{id}
   </select>
@@ -146,11 +146,11 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n]]></source>
 
 		<p>En tal caso puedes activar el logging de todo el fichero añadiendo un logger para el namespace como se muestra a continuación:</p>
 
-        <source>log4j.logger.org.mybatis.example.BlogMapper=TRACE</source>
+        <source>log4j.logger.org.mybatis.com.luo.example.BlogMapper=TRACE</source>
 
 		<p>O para un statement específico:</p>
 
-        <source>log4j.logger.org.mybatis.example.BlogMapper.selectBlog=TRACE</source>
+        <source>log4j.logger.org.mybatis.com.luo.example.BlogMapper.selectBlog=TRACE</source>
 
 		<p>Sí, como ya te habrás dado cuenta, no hay ninguna diferencia entre configurar el logging para un mapper o para un fichero XML.</p>
 

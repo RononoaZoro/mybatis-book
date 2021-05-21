@@ -58,7 +58,7 @@
       <subsection name="properties">
         <p>Contiene propiedades externalizables y sustituibles que se pueden configurar en un típico properties de Java o bien puede definirse su contenido directamente mediante subelementos property. Por ejemplo:
         </p>
-        <source><![CDATA[<properties resource="org/mybatis/example/config.properties">
+        <source><![CDATA[<properties resource="org/mybatis/com.luo.example/config.properties">
   <property name="username" value="dev_user"/>
   <property name="password" value="F2Fa3!33TYyg"/>
 </properties>]]></source>
@@ -108,7 +108,7 @@ SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environ
         </p>
 
         <source><![CDATA[
-<properties resource="org/mybatis/example/config.properties">
+<properties resource="org/mybatis/com.luo.example/config.properties">
   <!-- ... -->
   <property name="org.apache.ibatis.parsing.PropertyParser.enable-default-value" value="true"/> <!-- Enable this feature -->
 </properties>]]></source>
@@ -120,7 +120,7 @@ SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environ
         </p>
 
         <source><![CDATA[
-<properties resource="org/mybatis/example/config.properties">
+<properties resource="org/mybatis/com.luo.example/config.properties">
   <!-- ... -->
   <property name="org.apache.ibatis.parsing.PropertyParser.default-value-separator" value="?:"/> <!-- Change default value of separator -->
 </properties>]]></source>
@@ -1289,7 +1289,7 @@ public class ExampleTypeHandler extends BaseTypeHandler<String> {
 
         <source><![CDATA[<!-- mybatis-config.xml -->
 <typeHandlers>
-  <typeHandler handler="org.mybatis.example.ExampleTypeHandler"/>
+  <typeHandler handler="org.mybatis.com.luo.example.ExampleTypeHandler"/>
 </typeHandlers>
 ]]></source>
 
@@ -1331,7 +1331,7 @@ public class ExampleTypeHandler extends BaseTypeHandler<String> {
         <p>Y finalmente puedes hacer que MyBatis busque tus TypeHandlers:</p>
         <source><![CDATA[<!-- mybatis-config.xml -->
 <typeHandlers>
-  <package name="org.mybatis.example"/>
+  <package name="org.mybatis.com.luo.example"/>
 </typeHandlers>
 ]]></source>
 
@@ -1466,7 +1466,7 @@ public class ExampleObjectFactory extends DefaultObjectFactory {
 }]]></source>
 
         <source><![CDATA[<!-- mybatis-config.xml -->
-<objectFactory type="org.mybatis.example.ExampleObjectFactory">
+<objectFactory type="org.mybatis.com.luo.example.ExampleObjectFactory">
   <property name="someProperty" value="100"/>
 </objectFactory>]]></source>
         <p>La interfaz ObjectFactory es muy sencilla. Contiene solo dos métodos de creación, uno para el constructor por defecto y otro para el constructor parametrizado. Adicionalmente el método setProperties sirve para configurar el ObjectFactory. Las propiedades definidas en el cuerpo del elemento objectFactory se pasan al método setProperties después de que el ObjectFactory haya sido inicializado.
@@ -1519,7 +1519,7 @@ public class ExamplePlugin implements Interceptor {
 
         <source><![CDATA[<!-- mybatis-config.xml -->
 <plugins>
-  <plugin interceptor="org.mybatis.example.ExamplePlugin">
+  <plugin interceptor="org.mybatis.com.luo.example.ExamplePlugin">
     <property name="someProperty" value="100"/>
   </plugin>
 </plugins>]]></source>

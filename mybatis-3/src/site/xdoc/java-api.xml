@@ -72,7 +72,7 @@ SqlSessionFactory build(InputStream inputStream, Properties properties)
 SqlSessionFactory build(InputStream inputStream, String env, Properties props)
 SqlSessionFactory build(Configuration config)</source>  
 
-  <p>The first four methods are the most common, as they take an InputStream instance that refers to an XML document, or more specifically, the mybatis-config.xml file discussed above. The optional parameters are environment and properties. Environment determines which environment to load, including the datasource and transaction manager. For example:</p>
+  <p>The first four methods are the most common, as they take an InputStream instance that refers to an XML document, or more specifically, the mybatis-config.xml file discussed above. The optional parameters are environment and properties. Environment determines which environment to load, including the datasource and transaction manager. For com.luo.example:</p>
 
   <source><![CDATA[<environments default="development">
   <environment id="development">
@@ -88,7 +88,7 @@ SqlSessionFactory build(Configuration config)</source>
         ...
   </environment>
 </environments>]]></source>  
-  <p>If you call a build method that takes the environment parameter, then MyBatis will use the configuration for that environment. Of course, if you specify an invalid environment, you will receive an error. If you call one of the build methods that does not take the environment parameter, then the default environment is uses (which is specified as default="development" in the example above).</p>  
+  <p>If you call a build method that takes the environment parameter, then MyBatis will use the configuration for that environment. Of course, if you specify an invalid environment, you will receive an error. If you call one of the build methods that does not take the environment parameter, then the default environment is uses (which is specified as default="development" in the com.luo.example above).</p>
   <p>If you call a method that takes a properties instance, then MyBatis will load those properties and make them available to your configuration. Those properties can be used in place of most values in the configuration using the syntax:  ${propName}</p>
   <p>Recall that properties can also be referenced from the mybatis-config.xml file, or specified directly within it. Therefore it's important to understand the priority. We mentioned it earlier in this document, but here it is again for easy reference:</p>
 
@@ -102,7 +102,7 @@ SqlSessionFactory build(Configuration config)</source>
   <p>Thus, the highest priority properties are those passed in as a method parameter, followed by resource/url attributes and finally the properties specified in the body of the properties element.</p>
   <hr/>
   
-  <p>So to summarize, the first four methods are largely the same, but with overrides to allow you to optionally specify the environment and/or properties. Here is an example of building a SqlSessionFactory from an mybatis-config.xml file. </p>  
+  <p>So to summarize, the first four methods are largely the same, but with overrides to allow you to optionally specify the environment and/or properties. Here is an com.luo.example of building a SqlSessionFactory from an mybatis-config.xml file. </p>
 
   <source>String <strong>resource</strong> = "org/mybatis/builder/mybatis-config.xml";
 InputStream <strong>inputStream</strong> = Resources.getResourceAsStream(resource);
@@ -125,7 +125,7 @@ Reader getUrlAsReader(String urlString)
 Properties getUrlAsProperties(String urlString)
 Class classForName(String className)</source>
 
-  <p>The final build method takes an instance of Configuration. The Configuration class contains everything you could possibly need to know about a SqlSessionFactory instance. The Configuration class is useful for introspecting on the configuration, including finding and manipulating SQL maps (not recommended once the application is accepting requests). The configuration class has every configuration switch that you've learned about already, only exposed as a Java API. Here's a simple example of how to manually a Configuration instance and pass it to the build() method to create a SqlSessionFactory.</p>
+  <p>The final build method takes an instance of Configuration. The Configuration class contains everything you could possibly need to know about a SqlSessionFactory instance. The Configuration class is useful for introspecting on the configuration, including finding and manipulating SQL maps (not recommended once the application is accepting requests). The configuration class has every configuration switch that you've learned about already, only exposed as a Java API. Here's a simple com.luo.example of how to manually a Configuration instance and pass it to the build() method to create a SqlSessionFactory.</p>
   <source>DataSource dataSource = BaseDataTest.createBlogDataSource();
 TransactionFactory transactionFactory = new JdbcTransactionFactory();
 
@@ -285,8 +285,8 @@ try (SqlSession session = sqlSessionFactory.openSession()) {
 
   <h5>Using Mappers</h5>
   <source><![CDATA[<T> T getMapper(Class<T> type)]]></source>  
-  <p>While the various insert, update, delete and select methods above are powerful, they are also very verbose, not type safe and not as helpful to your IDE or unit tests as they could be. We've already seen an example of using Mappers in the Getting Started section above.</p>
-  <p>Therefore, a more common way to execute mapped statements is to use Mapper classes. A mapper class is simply an interface with method definitions that match up against the SqlSession methods. The following example class demonstrates some method signatures and how they map to the SqlSession.</p>
+  <p>While the various insert, update, delete and select methods above are powerful, they are also very verbose, not type safe and not as helpful to your IDE or unit tests as they could be. We've already seen an com.luo.example of using Mappers in the Getting Started section above.</p>
+  <p>Therefore, a more common way to execute mapped statements is to use Mapper classes. A mapper class is simply an interface with method definitions that match up against the SqlSession methods. The following com.luo.example class demonstrates some method signatures and how they map to the SqlSession.</p>
   <source><![CDATA[public interface AuthorMapper {
   // (Author) selectOne("selectAuthor", 5);
   Author selectAuthor(int id); 
@@ -306,12 +306,12 @@ try (SqlSession session = sqlSessionFactory.openSession()) {
   <p>In addition, the return type must match that of the expected result type for single results or an array or collection for multiple results. All of the usual types are supported, including: Primitives, Maps, POJOs and JavaBeans.</p>
   <p><span class="label important">NOTE</span> Mapper interfaces do not need to implement any interface or extend any class. As long as the method signature can be used to uniquely identify a corresponding mapped statement.</p>
   <p><span class="label important">NOTE</span> Mapper interfaces can extend other interfaces. Be sure that you have the statements in the appropriate namespace when using XML binding to Mapper interfaces. Also, the only limitation is that you cannot have the same method signature in two interfaces in a hierarchy (a bad idea anyway).</p>
-  <p>You can pass multiple parameters to a mapper method. If you do, they will be named by the literal "param" followed by their position in the parameter list by default, for example: #{param1}, #{param2} etc. If you wish to change the name of the parameters (multiple only), then you can use the @Param("paramName") annotation on the parameter.</p>
+  <p>You can pass multiple parameters to a mapper method. If you do, they will be named by the literal "param" followed by their position in the parameter list by default, for com.luo.example: #{param1}, #{param2} etc. If you wish to change the name of the parameters (multiple only), then you can use the @Param("paramName") annotation on the parameter.</p>
   <p>You can also pass a RowBounds instance to the method to limit query results.</p>
 
   <h5>Mapper Annotations</h5>
   <p>Since the very beginning, MyBatis has been an XML driven framework. The configuration is XML based, and the Mapped Statements are defined in XML. With MyBatis 3, there are new options available. MyBatis 3 builds on top of a comprehensive and powerful Java based Configuration API. This Configuration API is the foundation for the XML based MyBatis configuration, as well as the new Annotation based configuration. Annotations offer a simple way to implement simple mapped statements without introducing a lot of overhead.</p>
-  <p><span class="label important">NOTE</span> Java Annotations are unfortunately limited in their expressiveness and flexibility. Despite a lot of time spent in investigation, design and trials, the most powerful MyBatis mappings simply cannot be built with Annotations – without getting ridiculous that is. C# Attributes (for example) do not suffer from these limitations, and thus MyBatis.NET will enjoy a much richer alternative to XML. That said, the Java Annotation based configuration is not without its benefits.</p>
+  <p><span class="label important">NOTE</span> Java Annotations are unfortunately limited in their expressiveness and flexibility. Despite a lot of time spent in investigation, design and trials, the most powerful MyBatis mappings simply cannot be built with Annotations – without getting ridiculous that is. C# Attributes (for com.luo.example) do not suffer from these limitations, and thus MyBatis.NET will enjoy a much richer alternative to XML. That said, the Java Annotation based configuration is not without its benefits.</p>
   <p><strong>The Annotations are as follows:</strong></p>
   <table>
     <thead>
@@ -514,7 +514,7 @@ try (SqlSession session = sqlSessionFactory.openSession()) {
         <td>N/A</td>
         <td>If your mapper method takes multiple parameters, this annotation can be applied to a mapper method parameter
         to give each of them a name. Otherwise, multiple parameters will be named by their position prefixed with "param"
-        (not including any <code>RowBounds</code> parameters). For example <code>#{param1}</code>, <code>#{param2}</code> etc. is the default.
+        (not including any <code>RowBounds</code> parameters). For com.luo.example <code>#{param1}</code>, <code>#{param2}</code> etc. is the default.
         With <code>@Param("person")</code>, the parameter would be named <code>#{person}</code>.</td>
       </tr>
       <tr>
@@ -548,7 +548,7 @@ try (SqlSession session = sqlSessionFactory.openSession()) {
         so MyBatis must have a way to determine the type of object to construct for each row.
         If there is an XML result map, use the @ResultMap annotation.  If the result type is
         specified in XML on the <code>&lt;select&gt;</code> element, then no other annotation is
-        necessary.  In other cases, use this annotation.  For example, if a @Select annotated method
+        necessary.  In other cases, use this annotation.  For com.luo.example, if a @Select annotated method
         will use a result handler, the return type must be void and this annotation (or @ResultMap)
         is required.  This annotation is ignored unless the method return type is void.</td>
       </tr>
@@ -562,17 +562,17 @@ try (SqlSession session = sqlSessionFactory.openSession()) {
   </table>
 
   <h5>Mapper Annotation Examples</h5>
-  <p>This example shows using the @SelectKey annotation to retrieve a value from a sequence before an insert:</p>
+  <p>This com.luo.example shows using the @SelectKey annotation to retrieve a value from a sequence before an insert:</p>
   <source>@Insert("insert into table3 (id, name) values(#{nameId}, #{name})")
 @SelectKey(statement="call next value for TestSequence", keyProperty="nameId", before=<strong>true</strong>, resultType=<strong>int.class</strong>)
 <strong>int</strong> insertTable3(Name name);</source>
 
-  <p>This example shows using the @SelectKey annotation to retrieve an identity value after an insert:</p>
+  <p>This com.luo.example shows using the @SelectKey annotation to retrieve an identity value after an insert:</p>
   <source>@Insert("insert into table2 (name) values(#{name})")
 @SelectKey(statement="call identity()", keyProperty="nameId", before=<strong>false</strong>, resultType=<strong>int.class</strong>)
 <strong>int</strong> insertTable2(Name name);</source>
 
-  <p>This example shows using the <code>@Flush</code> annotation to call the <code>SqlSession#flushStatements()</code>:</p>
+  <p>This com.luo.example shows using the <code>@Flush</code> annotation to call the <code>SqlSession#flushStatements()</code>:</p>
   <source><![CDATA[@Flush
 List<BatchResult> flush();]]></source>
 
@@ -593,7 +593,7 @@ User getUserById(Integer id);
 @Select("select * from company where id = #{id}")
 Company getCompanyById(Integer id);</source>
 
-  <p>This example shows solo parameter using the SelectProvider annotation:</p>
+  <p>This com.luo.example shows solo parameter using the SelectProvider annotation:</p>
   <source><![CDATA[@SelectProvider(type = UserSqlBuilder.class, method = "buildGetUsersByName")
 List<User> getUsersByName(String name);
 
@@ -610,7 +610,7 @@ class UserSqlBuilder {
   }
 }]]></source>
 
-  <p>This example shows multiple parameters using the Sql Provider annotation:</p>
+  <p>This com.luo.example shows multiple parameters using the Sql Provider annotation:</p>
   <source><![CDATA[@SelectProvider(type = UserSqlBuilder.class, method = "buildGetUsersByName")
 List<User> getUsersByName(
     @Param("name") String name, @Param("orderByColumn") String orderByColumn);

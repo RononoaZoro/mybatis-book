@@ -1,5 +1,8 @@
 package com.blog4java.mybatis.xpath;
 
+import com.akulaku.platform.components.oss.StorageService;
+import com.akulaku.platform.components.oss.entity.req.OssUploadReq;
+import com.akulaku.platform.components.oss.entity.resp.OssUploadInfoResp;
 import com.alibaba.fastjson.JSON;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
@@ -9,6 +12,9 @@ import org.apache.ibatis.parsing.XNode;
 import org.apache.ibatis.parsing.XPathParser;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,5 +46,15 @@ public class XPathParserExample {
             userList.add(userEntity);
         }
         System.out.println(JSON.toJSONString(userList));
+    }
+
+
+    @Test
+    public void upload() throws FileNotFoundException {
+        File file = new File("D:\\justforfun\\study-record\\技术书籍笔记\\Mybatis3源码深度解析\\素材\\TypeHandler 部分子类.png");
+        OssUploadReq ossInfo = new OssUploadReq();
+        ossInfo.setStorageName("tencent1");
+        ossInfo.setFileName("111");
+        OssUploadInfoResp url = StorageService.store(new FileInputStream(file), ossInfo);
     }
 }

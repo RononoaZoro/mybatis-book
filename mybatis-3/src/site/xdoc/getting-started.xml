@@ -62,7 +62,7 @@
         the classpath and other locations.
       </p>
       <source><![CDATA[
-String resource = "org/mybatis/example/mybatis-config.xml";
+String resource = "org/mybatis/com.luo.example/mybatis-config.xml";
 InputStream inputStream = Resources.getResourceAsStream(resource);
 SqlSessionFactory sqlSessionFactory =
   new SqlSessionFactoryBuilder().build(inputStream);]]></source>
@@ -72,7 +72,7 @@ SqlSessionFactory sqlSessionFactory =
         Connection instances, as well as a TransactionManager for
         determining how transactions should be scoped and controlled. The
         full details of the XML configuration file can be found later in
-        this document, but here is a simple example:
+        this document, but here is a simple com.luo.example:
       </p>
       <source><![CDATA[<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration
@@ -91,12 +91,12 @@ SqlSessionFactory sqlSessionFactory =
     </environment>
   </environments>
   <mappers>
-    <mapper resource="org/mybatis/example/BlogMapper.xml"/>
+    <mapper resource="org/mybatis/com.luo.example/BlogMapper.xml"/>
   </mappers>
 </configuration>]]></source>
       <p>
         While there is a lot more to the XML configuration file, the
-        above example points out the most critical parts. Notice the
+        above com.luo.example points out the most critical parts. Notice the
         XML header, required to validate the XML document. The body
         of the environment element contains the environment
         configuration for transaction management and connection
@@ -147,12 +147,12 @@ SqlSessionFactory sqlSessionFactory =
         SQL commands against
         the database. You can execute mapped SQL statements directly against
         the SqlSession instance. For
-        example:
+        com.luo.example:
       </p>
       <source><![CDATA[SqlSession session = sqlSessionFactory.openSession();
 try {
   Blog blog = session.selectOne(
-    "org.mybatis.example.BlogMapper.selectBlog", 101);
+    "org.mybatis.com.luo.example.BlogMapper.selectBlog", 101);
 } finally {
   session.close();
 }]]></source>
@@ -166,7 +166,7 @@ try {
         prone string literals and casting.
       </p>
       <p>
-        For example:
+        For com.luo.example:
       </p>
       <source><![CDATA[SqlSession session = sqlSessionFactory.openSession();
 try {
@@ -195,31 +195,31 @@ try {
         popular over the years. If you've used MyBatis before, the concept
         will be familiar to you, but there have been numerous improvements
         to the XML mapping documents that will become clear later. Here is
-        an example of an XML based mapped statement that would satisfy the
+        an com.luo.example of an XML based mapped statement that would satisfy the
         above SqlSession calls.
       </p>
       <source><![CDATA[<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.example.BlogMapper">
+<mapper namespace="org.mybatis.com.luo.example.BlogMapper">
   <select id="selectBlog" resultType="Blog">
     select * from Blog where id = #{id}
   </select>
 </mapper>]]></source>
       <p>
-        While this looks like a lot of overhead for this simple example, it is
-        actually very light. You can define as many mapped statements in a
-        single mapper XML file as you like, so you get a lot of mileage out
-        of the XML header and doctype declaration. The rest of the file is
-        pretty self explanatory. It defines a name for the mapped statement
-        “selectBlog”, in the namespace “org.mybatis.example.BlogMapper”,
-        which would allow you to call it by specifying the fully qualified
-        name of “org.mybatis.example.BlogMapper.selectBlog”, as we did above
-        in the following example:
+          While this looks like a lot of overhead for this simple com.luo.example, it is
+          actually very light. You can define as many mapped statements in a
+          single mapper XML file as you like, so you get a lot of mileage out
+          of the XML header and doctype declaration. The rest of the file is
+          pretty self explanatory. It defines a name for the mapped statement
+          “selectBlog”, in the namespace “org.mybatis.com.luo.example.BlogMapper”,
+          which would allow you to call it by specifying the fully qualified
+          name of “org.mybatis.com.luo.example.BlogMapper.selectBlog”, as we did above
+          in the following com.luo.example:
       </p>
       <source><![CDATA[Blog blog = session.selectOne(
-  "org.mybatis.example.BlogMapper.selectBlog", 101);]]></source>
+  "org.mybatis.com.luo.example.BlogMapper.selectBlog", 101);]]></source>
       <p>
         Notice how similar this is to calling a method on a fully qualified Java
         class, and there's a reason for that. This name can be directly
@@ -227,7 +227,7 @@ try {
         method that matches the name, parameter, and return type as the
         mapped select statement. This allows you to very simply call the
         method against the Mapper interface as you saw above, but here it is
-        again in the following example:
+        again in the following com.luo.example:
       </p>
       <source><![CDATA[BlogMapper mapper = session.getMapper(BlogMapper.class);
 Blog blog = mapper.selectBlog(101);]]></source>
@@ -276,10 +276,10 @@ Blog blog = mapper.selectBlog(101);]]></source>
       <p>
         There's one more trick to Mapper classes like BlogMapper. Their mapped
         statements don't need to be mapped with XML at all. Instead they can
-        use Java Annotations. For example, the XML above could be eliminated
+        use Java Annotations. For com.luo.example, the XML above could be eliminated
         and replaced with:
       </p>
-      <source><![CDATA[package org.mybatis.example;
+      <source><![CDATA[package org.mybatis.com.luo.example;
 public interface BlogMapper {
   @Select("SELECT * FROM blog WHERE id = #{id}")
   Blog selectBlog(int id);
@@ -377,7 +377,7 @@ try {
           explicitly. While it's not a problem to keep them around throughout
           a request, similar to the SqlSession, you might find that managing
           too many resources at this level will quickly get out of hand. Keep
-          it simple, keep Mappers in the method scope. The following example
+          it simple, keep Mappers in the method scope. The following com.luo.example
           demonstrates this practice.
         </p>
         <source><![CDATA[SqlSession session = sqlSessionFactory.openSession();

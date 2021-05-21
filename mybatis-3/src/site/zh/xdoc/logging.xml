@@ -99,7 +99,7 @@ org.apache.ibatis.logging.LogFactory.useStdOutLogging();]]></source>
         </h4>
         <p>配置 Log4J 比较简单，假如你需要记录这个映射器接口的日志：
         </p>
-        <source><![CDATA[package org.mybatis.example;
+        <source><![CDATA[package org.mybatis.com.luo.example;
 public interface BlogMapper {
   @Select("SELECT * FROM blog WHERE id = #{id}")
   Blog selectBlog(int id);
@@ -109,25 +109,25 @@ public interface BlogMapper {
         <source><![CDATA[# Global logging configuration
 log4j.rootLogger=ERROR, stdout
 # MyBatis logging configuration...
-log4j.logger.org.mybatis.example.BlogMapper=TRACE
+log4j.logger.org.mybatis.com.luo.example.BlogMapper=TRACE
 # Console output...
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n]]></source>
-        <p>添加以上配置后，Log4J 就会记录 <code>org.mybatis.example.BlogMapper</code> 的详细执行操作，且仅记录应用中其它类的错误信息（若有）。</p>
+        <p>添加以上配置后，Log4J 就会记录 <code>org.mybatis.com.luo.example.BlogMapper</code> 的详细执行操作，且仅记录应用中其它类的错误信息（若有）。</p>
         <p>你也可以将日志的记录方式从接口级别切换到语句级别，从而实现更细粒度的控制。如下配置只对 <code>selectBlog</code> 语句记录日志：
         </p>
 
-        <source>log4j.logger.org.mybatis.example.BlogMapper.selectBlog=TRACE</source>
+        <source>log4j.logger.org.mybatis.com.luo.example.BlogMapper.selectBlog=TRACE</source>
         
         <p>与此相对，可以对一组映射器接口记录日志，只要对映射器接口所在的包开启日志功能即可：</p>
 
-        <source>log4j.logger.org.mybatis.example=TRACE</source>
+        <source>log4j.logger.org.mybatis.com.luo.example=TRACE</source>
         
         <p>某些查询可能会返回庞大的结果集，此时只想记录其执行的 SQL 语句而不想记录结果该怎么办？为此，Mybatis 中 SQL 语句的日志级别被设为DEBUG（JDK 日志设为 FINE），结果的日志级别为 TRACE（JDK 日志设为 FINER)。所以，只要将日志级别调整为 DEBUG 即可达到目的：
         </p>
 
-        <source>log4j.logger.org.mybatis.example=DEBUG</source>
+        <source>log4j.logger.org.mybatis.com.luo.example=DEBUG</source>
         
         <p>要记录日志的是类似下面的映射器文件而不是映射器接口又该怎么做呢？
         </p>
@@ -136,7 +136,7 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n]]></source>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.example.BlogMapper">
+<mapper namespace="org.mybatis.com.luo.example.BlogMapper">
   <select id="selectBlog" resultType="Blog">
     select * from Blog where id = #{id}
   </select>
@@ -145,11 +145,11 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n]]></source>
 		<p>如需对 XML 文件记录日志，只要对命名空间增加日志记录功能即可：
 		</p>
 
-        <source>log4j.logger.org.mybatis.example.BlogMapper=TRACE</source>
+        <source>log4j.logger.org.mybatis.com.luo.example.BlogMapper=TRACE</source>
 
 		<p>要记录具体语句的日志可以这样做：</p>
 
-        <source>log4j.logger.org.mybatis.example.BlogMapper.selectBlog=TRACE</source>
+        <source>log4j.logger.org.mybatis.com.luo.example.BlogMapper.selectBlog=TRACE</source>
 
 		<p>你应该注意到了，为映射器接口和 XML 文件添加日志功能的语句毫无差别。
 		</p>

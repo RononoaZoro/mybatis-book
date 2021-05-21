@@ -47,7 +47,7 @@
         du classpath ou d'ailleurs.
       </p>
       <source><![CDATA[
-String resource = "org/mybatis/example/mybatis-config.xml";
+String resource = "org/mybatis/com.luo.example/mybatis-config.xml";
 InputStream inputStream = Resources.getResourceAsStream(resource);
 SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);]]></source>
       <p>
@@ -75,7 +75,7 @@ SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(input
     </environment>
   </environments>
   <mappers>
-    <mapper resource="org/mybatis/example/BlogMapper.xml"/>
+    <mapper resource="org/mybatis/com.luo.example/BlogMapper.xml"/>
   </mappers>
 </configuration>]]></source>
       <p>
@@ -122,7 +122,7 @@ SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(confi
       </p>
       <source><![CDATA[SqlSession session = sqlSessionFactory.openSession();
 try {
-  Blog blog = session.selectOne("org.mybatis.example.BlogMapper.selectBlog", 101);
+  Blog blog = session.selectOne("org.mybatis.com.luo.example.BlogMapper.selectBlog", 101);
 } finally {
   session.close();
 }]]></source>
@@ -170,23 +170,23 @@ try {
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.example.BlogMapper">
+<mapper namespace="org.mybatis.com.luo.example.BlogMapper">
   <select id="selectBlog" resultType="Blog">
     select * from Blog where id = #{id}
   </select>
 </mapper>]]></source>
       <p>
-        Cela peut paraître beaucoup d'overhead pour un exemple aussi simple,
-        mais c'est en fait très léger. On peut définir autant de requêtes dans
-        un même mapper XML, si bien que les entêtes XML paraissent
-        insignifiants. Le reste du fichier parle de lui-même. On définit un nom
-        pour la requête “selectBlog”, dans le namespace
-        “org.mybatis.example.BlogMapper”, ce qui nous permettrait de l'exécuter
-        par son nom canonique (fully qualified name)
-        “org.mybatis.example.BlogMapper.selectBlog”, comme nous l'avions fait
-        plus haut :
+          Cela peut paraître beaucoup d'overhead pour un exemple aussi simple,
+          mais c'est en fait très léger. On peut définir autant de requêtes dans
+          un même mapper XML, si bien que les entêtes XML paraissent
+          insignifiants. Le reste du fichier parle de lui-même. On définit un nom
+          pour la requête “selectBlog”, dans le namespace
+          “org.mybatis.com.luo.example.BlogMapper”, ce qui nous permettrait de l'exécuter
+          par son nom canonique (fully qualified name)
+          “org.mybatis.com.luo.example.BlogMapper.selectBlog”, comme nous l'avions fait
+          plus haut :
       </p>
-      <source><![CDATA[Blog blog = session.selectOne("org.mybatis.example.BlogMapper.selectBlog", 101);]]></source>
+      <source><![CDATA[Blog blog = session.selectOne("org.mybatis.com.luo.example.BlogMapper.selectBlog", 101);]]></source>
       <p>
         C'est très similaire à un appel de méthode Java à partir du nom
         canonique (sans import) de la classe, et il y a une raison pour ça. Ce
@@ -250,7 +250,7 @@ Blog blog = mapper.selectBlog(101);]]></source>
         possible de passer par des annotations Java. On peut par exemple
         remplacer le mapping XML par:
       </p>
-      <source><![CDATA[package org.mybatis.example;
+      <source><![CDATA[package org.mybatis.com.luo.example;
 public interface BlogMapper {
   @Select("SELECT * FROM blog WHERE id = #{id}")
   Blog selectBlog(int id);

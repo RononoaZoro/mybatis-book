@@ -323,7 +323,7 @@ public class SqlSessionFactoryBean implements FactoryBean<SqlSessionFactory>, In
 
   /**
    * Set the JDBC {@code DataSource} that this instance should manage transactions for. The {@code DataSource}
-   * should match the one used by the {@code SqlSessionFactory}: for example, you could specify the same
+   * should match the one used by the {@code SqlSessionFactory}: for com.luo.example, you could specify the same
    * JNDI DataSource for both.
    *
    * A transactional JDBC {@code Connection} for this {@code DataSource} will be provided to application code

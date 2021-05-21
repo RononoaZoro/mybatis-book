@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.blog4java.mybatis.example.mapper.UserMapper">
+<mapper namespace="com.blog4java.mybatis.com.luo.example.mapper.UserMapper">
     <sql id="userAllField">
       id,create_time, name, password, phone, nick_name
     </sql>
 
-    <select id="getUserByEntity"  resultType="com.blog4java.mybatis.example.entity.UserEntity">
+    <select id="getUserByEntity"  resultType="com.blog4java.mybatis.com.luo.example.entity.UserEntity">
         select
         <include refid="userAllField"/>
         from user
@@ -23,7 +23,7 @@
         </where>
     </select>
 
-    <select id="getUserInfo"  resultType="com.blog4java.mybatis.example.entity.UserEntity">
+    <select id="getUserInfo"  resultType="com.blog4java.mybatis.com.luo.example.entity.UserEntity">
         select
         <include refid="userAllField"/>
         from user where 1 = 1
@@ -40,7 +40,7 @@
         </choose>
     </select>
 
-    <select id="getUserByPhones"  resultType="com.blog4java.mybatis.example.entity.UserEntity">
+    <select id="getUserByPhones"  resultType="com.blog4java.mybatis.com.luo.example.entity.UserEntity">
         select
         <include refid="userAllField"/>
         from user
@@ -53,7 +53,7 @@
 
 
     <select id="getUserByNames" lang="velocityDriver"
-            resultType="com.blog4java.mybatis.example.entity.UserEntity">
+            resultType="com.blog4java.mybatis.com.luo.example.entity.UserEntity">
         select * from user
         #where()
           #in( $_parameter.names $name "name" )
@@ -63,7 +63,7 @@
     </select>
 
     <select id="getUserByName" parameterType="java.lang.String"
-            resultType="com.blog4java.mybatis.example.entity.UserEntity">
+            resultType="com.blog4java.mybatis.com.luo.example.entity.UserEntity">
       select * from user where name = ${userName}
     </select>
 

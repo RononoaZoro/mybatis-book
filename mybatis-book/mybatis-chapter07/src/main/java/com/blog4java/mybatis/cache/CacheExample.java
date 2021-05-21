@@ -30,7 +30,7 @@ public class CacheExample {
     @Test
     public void testCacheBuilder() {
         final int N = 100000;
-        Cache cache = new CacheBuilder("com.blog4java.mybatis.example.mapper.UserMapper")
+        Cache cache = new CacheBuilder("com.blog4java.mybatis.com.luo.example.mapper.UserMapper")
                 .implementation( PerpetualCache.class)
                 .addDecorator(LruCache.class)
                 .clearInterval(10 * 60L)

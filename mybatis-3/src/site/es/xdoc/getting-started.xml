@@ -68,7 +68,7 @@
 					ubicaciones.
 				</p>
 				<source><![CDATA[
-String resource = "org/mybatis/example/mybatis-config.xml";
+String resource = "org/mybatis/com.luo.example/mybatis-config.xml";
 InputStream inputStream = Resources.getResourceAsStream(resource);
 SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);]]></source>
 				<p>
@@ -99,7 +99,7 @@ SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(input
     </environment>
   </environments>
   <mappers>
-    <mapper resource="org/mybatis/example/BlogMapper.xml"/>
+    <mapper resource="org/mybatis/com.luo.example/BlogMapper.xml"/>
   </mappers>
 </configuration>]]></source>
 				<p>
@@ -158,7 +158,7 @@ SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(confi
 				</p>
 				<source><![CDATA[SqlSession session = sqlSessionFactory.openSession();
 try {
-  Blog blog = (Blog) session.selectOne("org.mybatis.example.BlogMapper.selectBlog", 101);
+  Blog blog = (Blog) session.selectOne("org.mybatis.com.luo.example.BlogMapper.selectBlog", 101);
 } finally {
   session.close();
 }]]></source>
@@ -209,24 +209,24 @@ try {
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.example.BlogMapper">
+<mapper namespace="org.mybatis.com.luo.example.BlogMapper">
   <select id="selectBlog" resultType="Blog">
     select * from Blog where id = #{id}
   </select>
 </mapper>]]></source>
 				<p>
-					Aunque pudiera parecer que hay excesivo XML para un ejemplo tan simple,
-					en realidad no hay tanto. Puedes definir tantos mapped statements
-					en un solo fichero XML como quieras así que rentabilizarás las
-					líneas XML extra que corresponden a la cabecera XML y a la
-					declaración de doctype. El resto del fichero se explica por sí
-					mismo. Define un nombre para el mapped statement “selectBlog”, en
-					un namespace (espacio de nombres) “org.mybatis.example.BlogMapper”,
-					que permite realizar una llamada especificando el nombre completo
-					(fully qualified) “org.mybatis.example.BlogMapper.selectBlog” tal y
-					como muestra el código a continuación:
-				</p>
-				<source><![CDATA[Blog blog = session.selectOne("org.mybatis.example.BlogMapper.selectBlog", 101);]]></source>
+                    Aunque pudiera parecer que hay excesivo XML para un ejemplo tan simple,
+                    en realidad no hay tanto. Puedes definir tantos mapped statements
+                    en un solo fichero XML como quieras así que rentabilizarás las
+                    líneas XML extra que corresponden a la cabecera XML y a la
+                    declaración de doctype. El resto del fichero se explica por sí
+                    mismo. Define un nombre para el mapped statement “selectBlog”, en
+                    un namespace (espacio de nombres) “org.mybatis.com.luo.example.BlogMapper”,
+                    que permite realizar una llamada especificando el nombre completo
+                    (fully qualified) “org.mybatis.com.luo.example.BlogMapper.selectBlog” tal y
+                    como muestra el código a continuación:
+                </p>
+				<source><![CDATA[Blog blog = session.selectOne("org.mybatis.com.luo.example.BlogMapper.selectBlog", 101);]]></source>
 				<p>
 					Observa el gran parecido que hay entre esta llamada y la llamada a una
 					clase java y hay una razón para eso. Este literal puede mapearse
@@ -290,7 +290,7 @@ Blog blog = mapper.selectBlog(101);]]></source>
 					lugar, pueden usarse anotaciones. Por ejemplo, el XML puede ser
 					eliminado y reemplazarse por:
 				</p>
-				<source><![CDATA[package org.mybatis.example;
+				<source><![CDATA[package org.mybatis.com.luo.example;
 public interface BlogMapper {
   @Select("SELECT * FROM blog WHERE id = #{id}")
   Blog selectBlog(int id);

@@ -58,9 +58,9 @@ public class DummyMapperFactoryBean<T> extends MapperFactoryBean<T> {
   }
 
   private SqlSessionFactory getCustomSessionFactoryForClass() {
-    // can for example read a custom annotation to set a custom sqlSessionFactory
+    // can for com.luo.example read a custom annotation to set a custom sqlSessionFactory
 
-    // just a dummy implementation example
+    // just a dummy implementation com.luo.example
     return (SqlSessionFactory) Proxy.newProxyInstance(
         SqlSessionFactory.class.getClassLoader(),
         new Class[]{SqlSessionFactory.class},

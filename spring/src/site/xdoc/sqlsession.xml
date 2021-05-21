@@ -106,7 +106,7 @@ public SqlSessionTemplate sqlSession() throws Exception {
       <p>
         <code>SqlSessionTemplate</code> has also a constructor that takes
         an <code>ExecutorType</code> as an argument. This allows you to
-        construct, for example, a batch <code>SqlSession</code> by using
+        construct, for com.luo.example, a batch <code>SqlSession</code> by using
         the following in Spring's configuration file:
       </p>
         <source><![CDATA[<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">

@@ -33,7 +33,7 @@
           XML mapping features. However, sometimes it becomes necessary to build a SQL statement string inside of Java
           code. In that case, MyBatis has one more feature to help you out, before reducing yourself to the typical mess
           of plus signs, quotes, newlines, formatting problems and nested conditionals to deal with extra commas or
-          AND conjunctions. Indeed, dynamically generating SQL code in Java can be a real nightmare.  For example:
+          AND conjunctions. Indeed, dynamically generating SQL code in Java can be a real nightmare.  For com.luo.example:
         </p>
 
         <source><![CDATA[
@@ -53,7 +53,7 @@ String sql = "SELECT P.ID, P.USERNAME, P.PASSWORD, P.FULL_NAME, "
       <subsection name="The Solution">
       <p>MyBatis 3 offers a convenient utility class to help with the problem.
         With the SQL class, you simply create an instance that lets you call methods against it to build a SQL statement
-        one step at a time.  The example problem above would look like this when rewritten with the SQL class:
+        one step at a time.  The com.luo.example problem above would look like this when rewritten with the SQL class:
       </p>
 
       <source><![CDATA[
@@ -79,7 +79,7 @@ private String selectPersonSql() {
 }
 ]]></source>
 
-      <p>What is so special about that example? Well, if you look closely, it doesn't have to worry about
+      <p>What is so special about that com.luo.example? Well, if you look closely, it doesn't have to worry about
           accidentally duplicating "AND" keywords, or choosing between "WHERE"
           and "AND" or none at all. The SQL class takes care of understanding where "WHERE"
           needs to go, where an "AND" should be used and all of the String concatenation.

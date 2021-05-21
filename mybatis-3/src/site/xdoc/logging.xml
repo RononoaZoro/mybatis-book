@@ -91,14 +91,14 @@ org.apache.ibatis.logging.LogFactory.useStdOutLogging();]]></source>
       <p>If you choose to call one of these methods, you should do so
         before calling any other MyBatis method. Also, these methods
         will only switch to the requested log implementation if that
-        implementation is available on the runtime classpath. For example, if
+        implementation is available on the runtime classpath. For com.luo.example, if
         you try to select Log4J logging and Log4J is not available at runtime,
         then MyBatis will ignore the request to use Log4J and will use it's
         normal algorithm for discovering logging implementations.
       </p>
       <p>The specifics of SLF4J, Apache Commons Logging, Apache Log4J and the JDK
         Logging API are beyond the scope of this document. However the
-        example configuration below should get you started. If you would like
+        com.luo.example configuration below should get you started. If you would like
         to know more about these frameworks, you can get more information from
         the following locations:
       </p>
@@ -125,7 +125,7 @@ org.apache.ibatis.logging.LogFactory.useStdOutLogging();]]></source>
           in use. We'll show how to do it with Log4J. Configuring the
           logging services is simply a matter of including one or more extra
           configuration files (e.g. log4j.properties) and sometimes a new JAR
-          file (e.g. log4j.jar). The following example configuration will
+          file (e.g. log4j.jar). The following com.luo.example configuration will
           configure full logging services using Log4J as a provider. There
           are 2 steps.
         </p>
@@ -148,7 +148,7 @@ org.apache.ibatis.logging.LogFactory.useStdOutLogging();]]></source>
         </h4>
         <p>Configuring Log4J is simple. Suppose you want to enable the log for this mapper:
         </p>
-        <source><![CDATA[package org.mybatis.example;
+        <source><![CDATA[package org.mybatis.com.luo.example;
 public interface BlogMapper {
   @Select("SELECT * FROM blog WHERE id = #{id}")
   Blog selectBlog(int id);
@@ -159,14 +159,14 @@ public interface BlogMapper {
         <source><![CDATA[# Global logging configuration
 log4j.rootLogger=ERROR, stdout
 # MyBatis logging configuration...
-log4j.logger.org.mybatis.example.BlogMapper=TRACE
+log4j.logger.org.mybatis.com.luo.example.BlogMapper=TRACE
 # Console output...
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n]]></source>
         <p>
           The above file will cause log4J to report detailed logging for 
-          <code>org.mybatis.example.BlogMapper</code>
+          <code>org.mybatis.com.luo.example.BlogMapper</code>
           and just errors for the rest of the classes of your application.
         </p>
         <p>
@@ -176,12 +176,12 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n]]></source>
           statement:
         </p>
 
-        <source>log4j.logger.org.mybatis.example.BlogMapper.selectBlog=TRACE</source>
+        <source>log4j.logger.org.mybatis.com.luo.example.BlogMapper.selectBlog=TRACE</source>
         
         <p>By the contrary you may want want to enable logging for a group of mappers. 
         In that case you should add as a logger the root package where your mappers reside:</p>
 
-        <source>log4j.logger.org.mybatis.example=TRACE</source>
+        <source>log4j.logger.org.mybatis.com.luo.example=TRACE</source>
         
         <p>There are queries that can return huge result sets. In that cases you may want to see the 
         SQL statement but not the results. For that purpose SQL statements are logged at the DEBUG level
@@ -189,7 +189,7 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n]]></source>
         you want to see the statement but not the result, set the level to DEBUG.
         </p>
 
-        <source>log4j.logger.org.mybatis.example=DEBUG</source>
+        <source>log4j.logger.org.mybatis.com.luo.example=DEBUG</source>
         
         <p>But what about if you are not using mapper interfaces but mapper XML files like this one?
         </p>
@@ -198,7 +198,7 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n]]></source>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.example.BlogMapper">
+<mapper namespace="org.mybatis.com.luo.example.BlogMapper">
   <select id="selectBlog" resultType="Blog">
     select * from Blog where id = #{id}
   </select>
@@ -207,11 +207,11 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n]]></source>
 		<p>In that case you can enable logging for the whole XML file by adding
 		a logger for the namespace as shown below:</p>
 
-        <source>log4j.logger.org.mybatis.example.BlogMapper=TRACE</source>
+        <source>log4j.logger.org.mybatis.com.luo.example.BlogMapper=TRACE</source>
 
 		<p>Or for an specific statement:</p>
 
-        <source>log4j.logger.org.mybatis.example.BlogMapper.selectBlog=TRACE</source>
+        <source>log4j.logger.org.mybatis.com.luo.example.BlogMapper.selectBlog=TRACE</source>
 
 		<p>Yes, as you may have noticed, there is no difference in configuring 
 		logging for mapper interfaces or for XML mapper files.</p>

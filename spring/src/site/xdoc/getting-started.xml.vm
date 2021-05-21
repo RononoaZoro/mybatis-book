@@ -120,7 +120,7 @@ public SqlSessionFactoryBean sqlSessionFactory() throws Exception {
         Note that the mapper class specified
         <strong>must</strong>
         be an
-        interface, not an actual implementation class. In this example,
+        interface, not an actual implementation class. In this com.luo.example,
         annotations are used to specify the SQL, but a MyBatis mapper XML
         file
         could also be used.

@@ -27,7 +27,7 @@ import java.lang.annotation.*;
  * Config. It performs when same work as {@link MapperScannerConfigurer} via
  * {@link MapperScannerRegistrar}.
  *
- * <p>Configuration example:</p>
+ * <p>Configuration com.luo.example:</p>
  * <pre class="code">
  * &#064;Configuration
  * &#064;MapperScan("org.mybatis.spring.sample.mapper")

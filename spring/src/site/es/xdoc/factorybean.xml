@@ -142,7 +142,7 @@ public SqlSessionFactory sqlSessionFactory() {
         <span class="label important">NOTE</span>
         Since 1.3.0, <code>configuration</code> property has been added.
         It can be specified a <code>Configuration</code> instance directly without MyBatis XML configuration file.
-        For example:
+        For com.luo.example:
       </p>
 
       <source><![CDATA[

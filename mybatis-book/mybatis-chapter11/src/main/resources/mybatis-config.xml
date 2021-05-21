@@ -44,7 +44,7 @@
     </environments>
 
     <mappers>
-        <mapper resource="com/blog4java/mybatis/example/mapper/UserMapper.xml"/>
-        <mapper resource="com/blog4java/mybatis/example/mapper/OrderMapper.xml"/>
+        <mapper resource="com/blog4java/mybatis/com.luo.example/mapper/UserMapper.xml"/>
+        <mapper resource="com/blog4java/mybatis/com.luo.example/mapper/OrderMapper.xml"/>
     </mappers>
 </configuration>

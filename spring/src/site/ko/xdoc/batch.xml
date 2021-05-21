@@ -211,7 +211,7 @@ public MyBatisBatchItemWriter<User> writer() {
           By default behavior, the <code>MyBatisBatchItemWriter</code> passes a item that read using <code>ItemReader</code>
           (or convert by <code>ItemProcessor</code>) to the MyBatis(<code>SqlSession#update()</code>) as the parameter object.
           If you want to customize a parameter object that passes to the MyBatis, you can realize to use the <code>itemToParameterConverter</code> option.
-          For example using <code>itemToParameterConverter</code> option, you can passes any objects other than the item object to the MyBatis.
+          For com.luo.example using <code>itemToParameterConverter</code> option, you can passes any objects other than the item object to the MyBatis.
           Follows below a sample:
         </p>
 
