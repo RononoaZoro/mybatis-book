@@ -31,14 +31,18 @@ public class PropertyParserTest {
     props.setProperty("orderColumn", "member_id");
     props.setProperty("a:b", "c");
     Assertions.assertThat(PropertyParser.parse("${key}", props)).isEqualTo("value");
+    Assertions.assertThat(PropertyParser.parse("${a:user}", props)).isEqualTo("user");
     Assertions.assertThat(PropertyParser.parse("${key:aaaa}", props)).isEqualTo("value");
     Assertions.assertThat(PropertyParser.parse("SELECT * FROM ${tableName:users} ORDER BY ${orderColumn:id}", props)).isEqualTo("SELECT * FROM members ORDER BY member_id");
 
     props.setProperty(PropertyParser.KEY_ENABLE_DEFAULT_VALUE, "false");
     Assertions.assertThat(PropertyParser.parse("${a:b}", props)).isEqualTo("c");
+    Assertions.assertThat(PropertyParser.parse("${a:user}", props)).isNotEqualToIgnoringCase("user");
+
 
     props.remove(PropertyParser.KEY_ENABLE_DEFAULT_VALUE);
     Assertions.assertThat(PropertyParser.parse("${a:b}", props)).isEqualTo("c");
+    Assertions.assertThat(PropertyParser.parse("${a:user}", props)).isNotEqualToIgnoringCase("user");
 
   }
 

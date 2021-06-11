@@ -122,7 +122,7 @@ SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(confi
       </p>
       <source><![CDATA[SqlSession session = sqlSessionFactory.openSession();
 try {
-  Blog blog = session.selectOne("org.mybatis.com.luo.example.BlogMapper.selectBlog", 101);
+  Blog blog = session.selectOne("org.mybatis.com.luo.ibatis.BlogMapper.selectBlog", 101);
 } finally {
   session.close();
 }]]></source>
@@ -170,7 +170,7 @@ try {
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.com.luo.example.BlogMapper">
+<mapper namespace="org.mybatis.com.luo.ibatis.BlogMapper">
   <select id="selectBlog" resultType="Blog">
     select * from Blog where id = #{id}
   </select>
@@ -181,12 +181,12 @@ try {
           un même mapper XML, si bien que les entêtes XML paraissent
           insignifiants. Le reste du fichier parle de lui-même. On définit un nom
           pour la requête “selectBlog”, dans le namespace
-          “org.mybatis.com.luo.example.BlogMapper”, ce qui nous permettrait de l'exécuter
+          “org.mybatis.com.luo.ibatis.BlogMapper”, ce qui nous permettrait de l'exécuter
           par son nom canonique (fully qualified name)
-          “org.mybatis.com.luo.example.BlogMapper.selectBlog”, comme nous l'avions fait
+          “org.mybatis.com.luo.ibatis.BlogMapper.selectBlog”, comme nous l'avions fait
           plus haut :
       </p>
-      <source><![CDATA[Blog blog = session.selectOne("org.mybatis.com.luo.example.BlogMapper.selectBlog", 101);]]></source>
+      <source><![CDATA[Blog blog = session.selectOne("org.mybatis.com.luo.ibatis.BlogMapper.selectBlog", 101);]]></source>
       <p>
         C'est très similaire à un appel de méthode Java à partir du nom
         canonique (sans import) de la classe, et il y a une raison pour ça. Ce

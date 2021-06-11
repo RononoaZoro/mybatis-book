@@ -128,7 +128,7 @@ public Map<String, Object> datesParameters(
 }]]></source>
 
         <p>
-          The previous com.luo.example makes use of a few different things:
+            The previous com.luo.ibatis makes use of a few different things:
         </p>
         
         <ul>
@@ -137,7 +137,7 @@ public Map<String, Object> datesParameters(
           <li><code>queryId</code>: If the base code have several tables or databases to read from, and that you have different
             queries, it might be interesting to use different mapper files with different namespaces.
             so when referring to the query, don't forget about the namespace of the mapper file.</li>
-          <li><code>parameterValues</code>: You can pass additional parameters via this map, the com.luo.example above uses
+          <li><code>parameterValues</code>: You can pass additional parameters via this map, the com.luo.ibatis above uses
             a map that is build by spring using a SpEL expression taking values from the <code>jobExecutionContext</code>.
             The keys of the map will be used by MyBatis in the mapper file (ex:
             <em>yesterday</em> could be used as <code>#{yesterday,jdbcType=TIMESTAMP}</code>).
@@ -230,7 +230,7 @@ public MyBatisBatchItemWriter<User> writer() {
           By default behavior, the <code>MyBatisBatchItemWriter</code> passes a item that read using <code>ItemReader</code>
           (or convert by <code>ItemProcessor</code>) to the MyBatis(<code>SqlSession#update()</code>) as the parameter object.
           If you want to customize a parameter object that passes to the MyBatis, you can realize to use the <code>itemToParameterConverter</code> option.
-          For com.luo.example using <code>itemToParameterConverter</code> option, you can passes any objects other than the item object to the MyBatis.
+          For com.luo.ibatis using <code>itemToParameterConverter</code> option, you can passes any objects other than the item object to the MyBatis.
           Follows below a sample:
         </p>
 
@@ -321,7 +321,7 @@ public class Interaction {
 
         <p>Then in the spring configuration there will be a <code>CompositeItemWriter</code> that will use delegate
           writers specifically configured for each kind of records. Note that as the <em>InteractionMetadata</em> is
-          an association in the com.luo.example it will need to be written first so that Interaction can have the updated key.
+          an association in the com.luo.ibatis it will need to be written first so that Interaction can have the updated key.
         </p>
 
         <source><![CDATA[<bean id="interactionsItemWriter" class="org.springframework.batch.item.support.CompositeItemWriter">
@@ -350,7 +350,7 @@ public CompositeItemWriter<?> interactionsItemWriter() {
   return compositeItemWriter;
 }]]></source>
 
-        <p>Then each delegate writer will be configured as needed; for com.luo.example for <em>Interaction</em> and
+        <p>Then each delegate writer will be configured as needed; for com.luo.ibatis for <em>Interaction</em> and
           <em>InteractionMetadata</em>:
         </p>
 

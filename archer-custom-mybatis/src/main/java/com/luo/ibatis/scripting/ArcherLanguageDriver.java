@@ -16,23 +16,27 @@
 package com.luo.ibatis.scripting;
 
 
+import com.luo.ibatis.executor.parameter.ArcherParameterHandler;
+import com.luo.ibatis.mapping.ArcherBoundSql;
+import com.luo.ibatis.mapping.ArcherMappedStatement;
 import com.luo.ibatis.mapping.ArcherSqlSource;
 import com.luo.ibatis.parsing.XNode;
+import com.luo.ibatis.scripting.defaults.ArcherDefaultParameterHandler;
 import com.luo.ibatis.session.ArcherConfiguration;
 
 public interface ArcherLanguageDriver {
 
   /**
-   * Creates a {@link ParameterHandler} that passes the actual parameters to the the JDBC statement.
+   * Creates a {@link ArcherParameterHandler} that passes the actual parameters to the the JDBC statement.
    * 
    * @param mappedStatement The mapped statement that is being executed
    * @param parameterObject The input parameter object (can be null) 
    * @param boundSql The resulting SQL once the dynamic language has been executed.
    * @return
    * @author Frank D. Martinez [mnesarco]
-   * @see DefaultParameterHandler
+   * @see ArcherDefaultParameterHandler
    */
-//  ParameterHandler createParameterHandler(MappedStatement mappedStatement, Object parameterObject, BoundSql boundSql);
+  ArcherParameterHandler createParameterHandler(ArcherMappedStatement mappedStatement, Object parameterObject, ArcherBoundSql boundSql);
 
   /**
    * Creates an {@link ArcherSqlSource} that will hold the statement read from a mapper xml file.

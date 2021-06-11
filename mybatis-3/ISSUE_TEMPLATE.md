@@ -14,10 +14,10 @@ Bug report?
 Please fill out the BUG REPORT FORM below.
 
 To fix a bug, we need to reproduce it first.
-And we spend a lot of time just trying to reproduce the reported problem, so please consider creating a failing test case or an com.luo.example project.
+And we spend a lot of time just trying to reproduce the reported problem, so please consider creating a failing test case or an com.luo.ibatis project.
 
 - How to create a test case : https://github.com/mybatis/mybatis-3/wiki/Unit-Test
-- How to create a good com.luo.example : http://sscce.org
+- How to create a good com.luo.ibatis : http://sscce.org
 - How to upload your project to GitHub: https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/
 
 Feature request?
@@ -34,7 +34,7 @@ Feature request?
 
 ## Database vendor and version
 
-## Test case or com.luo.example project
+## Test case or com.luo.ibatis project
 
 ## Steps to reproduce
 

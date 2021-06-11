@@ -109,16 +109,16 @@ public interface BlogMapper {
         <source><![CDATA[# Global logging configuration
 log4j.rootLogger=ERROR, stdout
 # MyBatis logging configuration...
-log4j.logger.org.mybatis.com.luo.example.BlogMapper=TRACE
+log4j.logger.org.mybatis.com.luo.ibatis.BlogMapper=TRACE
 # Console output...
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender
 log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
 log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n]]></source>
-        <p>添加以上配置后，Log4J 就会记录 <code>org.mybatis.com.luo.example.BlogMapper</code> 的详细执行操作，且仅记录应用中其它类的错误信息（若有）。</p>
+        <p>添加以上配置后，Log4J 就会记录 <code>org.mybatis.com.luo.ibatis.BlogMapper</code> 的详细执行操作，且仅记录应用中其它类的错误信息（若有）。</p>
         <p>你也可以将日志的记录方式从接口级别切换到语句级别，从而实现更细粒度的控制。如下配置只对 <code>selectBlog</code> 语句记录日志：
         </p>
 
-        <source>log4j.logger.org.mybatis.com.luo.example.BlogMapper.selectBlog=TRACE</source>
+        <source>log4j.logger.org.mybatis.com.luo.ibatis.BlogMapper.selectBlog=TRACE</source>
         
         <p>与此相对，可以对一组映射器接口记录日志，只要对映射器接口所在的包开启日志功能即可：</p>
 
@@ -136,7 +136,7 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n]]></source>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.com.luo.example.BlogMapper">
+<mapper namespace="org.mybatis.com.luo.ibatis.BlogMapper">
   <select id="selectBlog" resultType="Blog">
     select * from Blog where id = #{id}
   </select>
@@ -145,11 +145,11 @@ log4j.appender.stdout.layout.ConversionPattern=%5p [%t] - %m%n]]></source>
 		<p>如需对 XML 文件记录日志，只要对命名空间增加日志记录功能即可：
 		</p>
 
-        <source>log4j.logger.org.mybatis.com.luo.example.BlogMapper=TRACE</source>
+        <source>log4j.logger.org.mybatis.com.luo.ibatis.BlogMapper=TRACE</source>
 
 		<p>要记录具体语句的日志可以这样做：</p>
 
-        <source>log4j.logger.org.mybatis.com.luo.example.BlogMapper.selectBlog=TRACE</source>
+        <source>log4j.logger.org.mybatis.com.luo.ibatis.BlogMapper.selectBlog=TRACE</source>
 
 		<p>你应该注意到了，为映射器接口和 XML 文件添加日志功能的语句毫无差别。
 		</p>

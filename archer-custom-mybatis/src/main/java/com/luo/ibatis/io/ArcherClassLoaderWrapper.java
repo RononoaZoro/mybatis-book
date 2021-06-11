@@ -1,6 +1,7 @@
 package com.luo.ibatis.io;
 
 import java.io.InputStream;
+import java.net.URL;
 
 public class ArcherClassLoaderWrapper {
 
@@ -13,6 +14,17 @@ public class ArcherClassLoaderWrapper {
         } catch (SecurityException ignored) {
             // AccessControlException on Google App Engine
         }
+    }
+
+
+    /*
+     * Get a resource from the classpath
+     *
+     * @param resource - the resource to find
+     * @return the stream or null
+     */
+    public InputStream getResourceAsStream(String resource) {
+        return getResourceAsStream(resource, getClassLoaders(null));
     }
 
     /*
@@ -36,6 +48,27 @@ public class ArcherClassLoaderWrapper {
      */
     public Class<?> classForName(String name) throws ClassNotFoundException {
         return classForName(name, getClassLoaders(null));
+    }
+
+    /*
+     * Get a resource as a URL using the current class path
+     *
+     * @param resource - the resource to locate
+     * @return the resource or null
+     */
+    public URL getResourceAsURL(String resource) {
+        return getResourceAsURL(resource, getClassLoaders(null));
+    }
+
+    /*
+     * Get a resource from the classpath, starting with a specific class loader
+     *
+     * @param resource    - the resource to find
+     * @param classLoader - the first classloader to try
+     * @return the stream or null
+     */
+    public URL getResourceAsURL(String resource, ClassLoader classLoader) {
+        return getResourceAsURL(resource, getClassLoaders(classLoader));
     }
 
     /*
@@ -63,6 +96,60 @@ public class ArcherClassLoaderWrapper {
             }
         }
         return null;
+    }
+
+
+
+    /*
+     * Get a resource as a URL using the current class path
+     *
+     * @param resource    - the resource to locate
+     * @param classLoader - the class loaders to examine
+     * @return the resource or null
+     */
+    URL getResourceAsURL(String resource, ClassLoader[] classLoader) {
+
+        URL url;
+
+        for (ClassLoader cl : classLoader) {
+
+            if (null != cl) {
+
+                // look for the resource as passed in...
+                url = cl.getResource(resource);
+
+                // ...but some class loaders want this leading "/", so we'll add it
+                // and try again if we didn't find the resource
+                if (null == url) {
+                    url = cl.getResource("/" + resource);
+                }
+
+                // "It's always in the last place I look for it!"
+                // ... because only an idiot would keep looking for it after finding it, so stop looking already.
+                if (null != url) {
+                    return url;
+                }
+
+            }
+
+        }
+
+        // didn't find it anywhere.
+        return null;
+
+    }
+
+
+    /*
+     * Find a class on the classpath, starting with a specific classloader (or die trying)
+     *
+     * @param name        - the class to look for
+     * @param classLoader - the first classloader to try
+     * @return - the class
+     * @throws ClassNotFoundException Duh.
+     */
+    public Class<?> classForName(String name, ClassLoader classLoader) throws ClassNotFoundException {
+        return classForName(name, getClassLoaders(classLoader));
     }
 
     /*

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.blog4java.mybatis.com.luo.example.mapper.OrderMapper">
+<mapper namespace="com.blog4java.mybatis.com.luo.ibatis.mapper.OrderMapper">
 
     <resultMap id="detailMap" type="com.blog4java.mybatis.com.luo.example.entity.Order">
         <association property="user" javaType="com.blog4java.mybatis.com.luo.example.entity.User"
-                     select="com.blog4java.mybatis.com.luo.example.mapper.UserMapper.getUserById" column="userId">
+                     select="com.blog4java.mybatis.com.luo.ibatis.mapper.UserMapper.getUserById" column="userId">
         </association>
     </resultMap>
 

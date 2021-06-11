@@ -4,11 +4,14 @@ import com.luo.ibatis.builder.ArcherBaseBuilder;
 import com.luo.ibatis.builder.ArcherMapperBuilderAssistant;
 import com.luo.ibatis.builder.BuilderException;
 import com.luo.ibatis.builder.IncompleteElementException;
+import com.luo.ibatis.io.ArcherResources;
 import com.luo.ibatis.parsing.XNode;
 import com.luo.ibatis.parsing.XPathParser;
 import com.luo.ibatis.session.ArcherConfiguration;
 
 import java.io.InputStream;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -38,14 +41,14 @@ public class ArcherXMLMapperBuilder extends ArcherBaseBuilder {
             configurationElement(parser.evalNode("/mapper"));
             // 將资源路径添加到Configuration对象中
             configuration.addLoadedResource(resource);
-//            bindMapperForNamespace();
+            bindMapperForNamespace();
         }
 //        // 继续解析之前解析出现异常的ResultMap对象
 //        parsePendingResultMaps();
 //        // 继续解析之前解析出现异常的CacheRef对象
 //        parsePendingCacheRefs();
-//        // 继续解析之前解析出现异常<select|update|delete|insert>标签配置
-//        parsePendingStatements();
+        // 继续解析之前解析出现异常<select|update|delete|insert>标签配置
+        parsePendingStatements();
     }
 
     private void configurationElement(XNode context) {
@@ -92,6 +95,42 @@ public class ArcherXMLMapperBuilder extends ArcherBaseBuilder {
                 statementParser.parseStatementNode();
             } catch (IncompleteElementException e) {
                 configuration.addIncompleteStatement(statementParser);
+            }
+        }
+    }
+
+    private void parsePendingStatements() {
+        Collection<ArcherXMLStatementBuilder> incompleteStatements = configuration.getIncompleteStatements();
+        synchronized (incompleteStatements) {
+            Iterator<ArcherXMLStatementBuilder> iter = incompleteStatements.iterator();
+            while (iter.hasNext()) {
+                try {
+                    iter.next().parseStatementNode();
+                    iter.remove();
+                } catch (IncompleteElementException e) {
+                    // Statement is still missing a resource...
+                }
+            }
+        }
+    }
+
+    private void bindMapperForNamespace() {
+        String namespace = builderAssistant.getCurrentNamespace();
+        if (namespace != null) {
+            Class<?> boundType = null;
+            try {
+                boundType = ArcherResources.classForName(namespace);
+            } catch (ClassNotFoundException e) {
+                //ignore, bound type is not required
+            }
+            if (boundType != null) {
+                if (!configuration.hasMapper(boundType)) {
+                    // Spring may not know the real resource name so we set a flag
+                    // to prevent loading again this resource from the mapper interface
+                    // look at MapperAnnotationBuilder#loadXmlResource
+                    configuration.addLoadedResource("namespace:" + namespace);
+                    configuration.addMapper(boundType);
+                }
             }
         }
     }

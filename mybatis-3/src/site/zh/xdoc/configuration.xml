@@ -1286,7 +1286,7 @@ public class ExampleTypeHandler extends BaseTypeHandler<String> {
 
         <source><![CDATA[<!-- mybatis-config.xml -->
 <typeHandlers>
-  <typeHandler handler="org.mybatis.com.luo.example.ExampleTypeHandler"/>
+  <typeHandler handler="org.mybatis.com.luo.ibatis.ExampleTypeHandler"/>
 </typeHandlers>
 ]]></source>
 
@@ -1437,7 +1437,7 @@ public class ExampleObjectFactory extends DefaultObjectFactory {
 ]]></source>
 
         <source><![CDATA[<!-- mybatis-config.xml -->
-<objectFactory type="org.mybatis.com.luo.example.ExampleObjectFactory">
+<objectFactory type="org.mybatis.com.luo.ibatis.ExampleObjectFactory">
   <property name="someProperty" value="100"/>
 </objectFactory>]]></source>
         <p>ObjectFactory 接口很简单，它包含两个创建用的方法，一个是处理默认构造方法的，另外一个是处理带参数的构造方法的。
@@ -1493,7 +1493,7 @@ public class ExamplePlugin implements Interceptor {
 
         <source><![CDATA[<!-- mybatis-config.xml -->
 <plugins>
-  <plugin interceptor="org.mybatis.com.luo.example.ExamplePlugin">
+  <plugin interceptor="org.mybatis.com.luo.ibatis.ExamplePlugin">
     <property name="someProperty" value="100"/>
   </plugin>
 </plugins>]]></source>

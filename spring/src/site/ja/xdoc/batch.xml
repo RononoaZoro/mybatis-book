@@ -125,7 +125,7 @@ public Map<String, Object> datesParameters(
 }]]></source>
 
         <p>
-          The previous com.luo.example makes use of a few different things:
+            The previous com.luo.ibatis makes use of a few different things:
         </p>
         
         <ul>

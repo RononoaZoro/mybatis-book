@@ -123,7 +123,7 @@ SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(confi
         </p>
         <source><![CDATA[SqlSession session = sqlSessionFactory.openSession();
 try {
-  Blog blog = (Blog) session.selectOne("org.mybatis.com.luo.example.BlogMapper.selectBlog", 101);
+  Blog blog = (Blog) session.selectOne("org.mybatis.com.luo.ibatis.BlogMapper.selectBlog", 101);
 } finally {
   session.close();
 }]]></source>
@@ -159,7 +159,7 @@ try {
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.com.luo.example.BlogMapper">
+<mapper namespace="org.mybatis.com.luo.ibatis.BlogMapper">
   <select id="selectBlog" resultType="Blog">
     select * from Blog where id = #{id}
   </select>
@@ -167,10 +167,10 @@ try {
         <p>
           例が簡単なので無駄に記述量が多いように見えるかも知れませんが、本質的にはそれほどではありません。<br />
           ひとつの Mapper XML ファイルに複数の Mapped Statement を定義することができるので、XML ヘッダや doctype 宣言は一度書くだけです。<br />
-          残りの部分はほぼ自明ですが、「org.mybatis.com.luo.example.BlogMapper」というネームスペースの中に「selectBlog」という名前の Mapped Statement を定義しています。<br />
-          上のサンプルと同じですが、この Mapped Statement を実行するには、以下のように完全修飾名「org.mybatis.com.luo.example.BlogMapper.selectBlog」を指定して SqlSession のメソッドを呼び出します。
+          残りの部分はほぼ自明ですが、「org.mybatis.com.luo.ibatis.BlogMapper」というネームスペースの中に「selectBlog」という名前の Mapped Statement を定義しています。<br />
+          上のサンプルと同じですが、この Mapped Statement を実行するには、以下のように完全修飾名「org.mybatis.com.luo.ibatis.BlogMapper.selectBlog」を指定して SqlSession のメソッドを呼び出します。
         </p>
-        <source><![CDATA[Blog blog = session.selectOne("org.mybatis.com.luo.example.BlogMapper.selectBlog", 101);]]></source>
+        <source><![CDATA[Blog blog = session.selectOne("org.mybatis.com.luo.ibatis.BlogMapper.selectBlog", 101);]]></source>
         <p>
           この例が、完全修飾名で指定した Java クラスのメソッドを呼び出すのと似ていることに気づいたでしょうか。
           これには理由があります。

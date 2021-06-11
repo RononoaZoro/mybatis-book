@@ -387,7 +387,7 @@ ps.setInt(1,id);]]></source>
         <p>
           First, if your database supports auto-generated key fields (e.g. MySQL and SQL Server),
           then you can simply set <code>useGeneratedKeys="true"</code> and set the <code>keyProperty</code> to the target property
-          and you're done. For com.luo.example, if the <code>Author</code> table above had used an auto-generated column type
+          and you're done. For com.luo.ibatis, if the <code>Author</code> table above had used an auto-generated column type
           for the id, the statement would be modified as follows:
         </p>
 
@@ -415,8 +415,8 @@ ps.setInt(1,id);]]></source>
         </p>
 
         <p>
-          Here's a simple (silly) com.luo.example that would generate a random ID (something you'd likely never do,
-          but this demonstrates the flexibility and how MyBatis really doesn't mind):
+            Here's a simple (silly) com.luo.ibatis that would generate a random ID (something you'd likely never do,
+            but this demonstrates the flexibility and how MyBatis really doesn't mind):
         </p>
         <source><![CDATA[<insert id="insertAuthor">
   <selectKey keyProperty="id" resultType="int" order="BEFORE">
@@ -428,7 +428,7 @@ ps.setInt(1,id);]]></source>
     (#{id}, #{username}, #{password}, #{email}, #{bio}, #{favouriteSection,jdbcType=VARCHAR})
 </insert>]]></source>
         <p>
-          In the com.luo.example above, the selectKey statement would be run first, the <code>Author</code> id property would be
+          In the com.luo.ibatis above, the selectKey statement would be run first, the <code>Author</code> id property would be
           set, and then the insert statement would be called. This gives you a similar behavior to an
           auto-generated key in your database without complicating your Java code.
         </p>
@@ -551,11 +551,11 @@ ps.setInt(1,id);]]></source>
 </select>]]></source>
 
         <p>
-          The com.luo.example above demonstrates a very simple named parameter mapping. The parameterType is set to
+          The com.luo.ibatis above demonstrates a very simple named parameter mapping. The parameterType is set to
           <code>int</code>, so therefore the parameter could be named anything. Primitive or simple data types such as
           <code>Integer</code> and <code>String</code> have no relevant properties, and thus will replace the full value of the
           parameter entirely. However, if you pass in a complex object, then the behavior is a little
-          different. For com.luo.example:
+          different. For com.luo.ibatis:
         </p>
 
         <source><![CDATA[<insert id="insertUser" parameterType="User">
@@ -593,7 +593,7 @@ ps.setInt(1,id);]]></source>
 
         <p>
           To further customize type handling, you can also specify a specific <code>TypeHandler</code>
-          class (or alias), for com.luo.example:
+          class (or alias), for com.luo.ibatis:
         </p>
 
         <source><![CDATA[#{age,javaType=int,jdbcType=NUMERIC,typeHandler=MyTypeHandler}]]></source>
@@ -620,9 +620,9 @@ ps.setInt(1,id);]]></source>
         <source><![CDATA[#{department, mode=OUT, jdbcType=CURSOR, javaType=ResultSet, resultMap=departmentResultMap}]]></source>
 
         <p>
-          MyBatis also supports more advanced data types such as structs, but you must tell the statement
-          the type name when registering the out parameter. For com.luo.example (again, don't break lines like
-          this in practice):
+            MyBatis also supports more advanced data types such as structs, but you must tell the statement
+            the type name when registering the out parameter. For com.luo.ibatis (again, don't break lines like
+            this in practice):
         </p>
 
         <source><![CDATA[#{middleInitial, mode=OUT, jdbcType=STRUCT, jdbcTypeName=MY_TYPE, resultMap=departmentResultMap}]]></source>
@@ -644,7 +644,7 @@ ps.setInt(1,id);]]></source>
           By default, using the <code>#{}</code> syntax will cause MyBatis to generate <code>PreparedStatement</code> properties and
           set the values safely against the <code>PreparedStatement</code> parameters (e.g. ?). While this is safer,
           faster and almost always preferred, sometimes you just want to directly inject an unmodified string
-          into the SQL Statement. For com.luo.example, for ORDER BY, you might use something like this:
+          into the SQL Statement. For com.luo.ibatis, for ORDER BY, you might use something like this:
         </p>
 
         <source><![CDATA[ORDER BY ${columnName}]]></source>
@@ -674,7 +674,7 @@ ps.setInt(1,id);]]></source>
 
         <p>
           You've already seen examples of simple mapped statements that don't have an explicit <code>resultMap</code>. For
-          com.luo.example:
+          com.luo.ibatis:
         </p>
 
         <source><![CDATA[<select id="selectUsers" resultType="map">
@@ -750,7 +750,7 @@ public class User {
           the JavaBean properties based on name. 
           If the column names did not match exactly, you could employ
           select clause aliases (a standard SQL feature) on the column names to make the labels match. For
-          com.luo.example:
+          com.luo.ibatis:
         </p>
 
         <source><![CDATA[<select id="selectUsers" resultType="User">
@@ -764,8 +764,8 @@ public class User {
 
         <p>
           The great thing about <code>ResultMap</code>s is that you've already learned a lot about them, but you haven't
-          even seen one yet! These simple cases don't require any more than you've seen here. Just for com.luo.example
-          sake, let's see what this last com.luo.example would look like as an external <code>resultMap</code>, as that is another
+          even seen one yet! These simple cases don't require any more than you've seen here. Just for com.luo.ibatis
+          sake, let's see what this last com.luo.ibatis would look like as an external <code>resultMap</code>, as that is another
           way to solve column name mismatches.
         </p>
 
@@ -777,7 +777,7 @@ public class User {
 
         <p>
           And the statement that references it uses the <code>resultMap</code> attribute to do so (notice we removed the
-          <code>resultType</code> attribute). For com.luo.example:
+          <code>resultType</code> attribute). For com.luo.ibatis:
         </p>
 
         <source><![CDATA[<select id="selectUsers" resultMap="userResultMap">
@@ -799,7 +799,7 @@ public class User {
           it, it's not. Result Maps are the answer that MyBatis provides to this problem.
         </p>
 
-        <p>For com.luo.example, how would we map this statement?</p>
+        <p>For com.luo.ibatis, how would we map this statement?</p>
 
         <source><![CDATA[<!-- Very Complex Statement -->
 <select id="selectBlogDetails" resultMap="detailedBlogResultMap">
@@ -837,11 +837,11 @@ public class User {
 </select>]]></source>
 
         <p>
-          You'd probably want to map it to an intelligent object model consisting of a Blog that was written
-          by an Author, and has many Posts, each of which may have zero or many Comments and Tags. The
-          following is a complete com.luo.example of a complex ResultMap (assume Author, Blog, Post, Comments and Tags
-          are all type aliases). Have a look at it, but don't worry, we're going to go through each step.
-          While it may look daunting at first, it's actually very simple.
+            You'd probably want to map it to an intelligent object model consisting of a Blog that was written
+            by an Author, and has many Posts, each of which may have zero or many Comments and Tags. The
+            following is a complete com.luo.ibatis of a complex ResultMap (assume Author, Blog, Post, Comments and Tags
+            are all type aliases). Have a look at it, but don't worry, we're going to go through each step.
+            While it may look daunting at first, it's actually very simple.
         </p>
 
         <source><![CDATA[<!-- Very Complex Result Map -->
@@ -999,7 +999,7 @@ public class User {
                 given
                 name. In both cases you can use complex property navigation using the usual dot
                 notation. For
-                com.luo.example, you can map to something simple like: <code>username</code>, or to something more
+                com.luo.ibatis, you can map to something simple like: <code>username</code>, or to something more
                 complicated
                 like: <code>address.street.number</code>.
               </td>
@@ -1118,7 +1118,7 @@ public class User {
 
         <p>
           In order to inject the results into the constructor, MyBatis needs to identify the constructor for somehow.
-          In the following com.luo.example, MyBatis searches a constructor declared with three parameters: <code>java.lang.Integer</code>, <code>java.lang.String</code> and <code>int</code> in this order.
+          In the following com.luo.ibatis, MyBatis searches a constructor declared with three parameters: <code>java.lang.Integer</code>, <code>java.lang.String</code> and <code>int</code> in this order.
         </p>
 
         <source><![CDATA[<constructor>
@@ -1130,7 +1130,7 @@ public class User {
         <p>
           When you are dealing with a constructor with many parameters, maintaining the order of arg elements is error-prone.<br />
           Since 3.4.3, by specifying the name of each parameter, you can write arg elements in any order. To reference constructor parameters by their names, you can either add <code>@Param</code> annotation to them or compile the project with '-parameters' compiler option and enable <code>useActualParamName</code> (this option is enabled by default).
-          The following com.luo.example is valid for the same constructor even though the order of the second and the third parameters does not match with the declared order.
+          The following com.luo.ibatis is valid for the same constructor even though the order of the second and the third parameters does not match with the declared order.
         </p>
 
         <source><![CDATA[<constructor>
@@ -1226,7 +1226,7 @@ public class User {
 </association>]]></source>
 
         <p>
-          The association element deals with a "has-one" type relationship. For com.luo.example, in our com.luo.example, a
+          The association element deals with a "has-one" type relationship. For com.luo.ibatis, in our com.luo.ibatis, a
           Blog has one Author. An association mapping works mostly like any other result. You specify the
           target property, the <code>javaType</code> of the property (which MyBatis
           can figure out most of the time), the jdbcType if necessary and a typeHandler if you want to
@@ -1267,7 +1267,7 @@ public class User {
                 The field or property to map the column result to. If a matching JavaBeans property
                 exists for the given name, then that will be used. Otherwise, MyBatis will look for a
                 field of the given name. In both cases you can use complex property navigation using the
-                usual dot notation. For com.luo.example, you can map to something simple like: <code>username</code>, or to
+                usual dot notation. For com.luo.ibatis, you can map to something simple like: <code>username</code>, or to
                 something more complicated like: <code>address.street.number</code>.
               </td>
             </tr>
@@ -1327,7 +1327,7 @@ public class User {
               <td>
                 The ID of another mapped statement that will load the complex type required by this
                 property mapping. The values retrieved from columns specified in the column attribute
-                will be passed to the target select statement as parameters. A detailed com.luo.example follows
+                will be passed to the target select statement as parameters. A detailed com.luo.ibatis follows
                 this table.
                 Note: To deal with composite keys, you can specify multiple column names to pass to the
                 nested select statement by using the syntax <code>column="{prop1=col1,prop2=col2}"</code>. This will
@@ -1411,21 +1411,21 @@ public class User {
             <tr>
               <td><code>resultMap</code></td>
               <td>
-                This is the ID of a ResultMap that can map the nested results of this association into
-                an appropriate object graph. This is an alternative to using a call to another select
-                statement. It allows you to join multiple tables together into a single ResultSet. Such
-                a ResultSet will contain duplicated, repeating groups of data that needs to be
-                decomposed and mapped properly to a nested object graph. To facilitate this, MyBatis
-                lets you "chain" result maps together, to deal with the nested results. An com.luo.example will
-                be far easier to follow, and one follows this table.
+                  This is the ID of a ResultMap that can map the nested results of this association into
+                  an appropriate object graph. This is an alternative to using a call to another select
+                  statement. It allows you to join multiple tables together into a single ResultSet. Such
+                  a ResultSet will contain duplicated, repeating groups of data that needs to be
+                  decomposed and mapped properly to a nested object graph. To facilitate this, MyBatis
+                  lets you "chain" result maps together, to deal with the nested results. An com.luo.ibatis will
+                  be far easier to follow, and one follows this table.
               </td>
             </tr>
             <tr>
               <td><code>columnPrefix</code></td>
               <td>
-                When joining multiple tables, you would have to use column alias to avoid duplicated
-                column names in the ResultSet. Specifying columnPrefix allows you to map such columns
-                to an external resultMap. Please see the com.luo.example explained later in this section.
+                  When joining multiple tables, you would have to use column alias to avoid duplicated
+                  column names in the ResultSet. Specifying columnPrefix allows you to map such columns
+                  to an external resultMap. Please see the com.luo.ibatis explained later in this section.
               </td>
             </tr>
             <tr>
@@ -1448,9 +1448,9 @@ public class User {
         </table>
 
         <p>
-          You've already seen a very complicated com.luo.example of nested associations above. The following is a far
-          simpler com.luo.example to demonstrate how this works. Instead of executing a separate statement, we'll join
-          the Blog and Author tables together, like so:
+            You've already seen a very complicated com.luo.ibatis of nested associations above. The following is a far
+            simpler com.luo.ibatis to demonstrate how this works. Instead of executing a separate statement, we'll join
+            the Blog and Author tables together, like so:
         </p>
 
         <source><![CDATA[<select id="selectBlog" resultMap="blogResult">
@@ -1487,8 +1487,8 @@ public class User {
 </resultMap>]]></source>
 
         <p>
-          In the com.luo.example above you can see at the Blog's "author" association delegates to the "authorResult"
-          resultMap to load the Author instance.
+            In the com.luo.ibatis above you can see at the Blog's "author" association delegates to the "authorResult"
+            resultMap to load the Author instance.
         </p>
 
         <p>
@@ -1501,10 +1501,10 @@ public class User {
         </p>
 
         <p>
-          Now, the above com.luo.example used an external resultMap element to map the association. This makes the
-          Author resultMap reusable. However, if you have no need to reuse it, or if you simply prefer to
-          co-locate your result mappings into a single descriptive resultMap, you can nest the association
-          result mappings. Here's the same com.luo.example using this approach:
+            Now, the above com.luo.ibatis used an external resultMap element to map the association. This makes the
+            Author resultMap reusable. However, if you have no need to reuse it, or if you simply prefer to
+            co-locate your result mappings into a single descriptive resultMap, you can nest the association
+            result mappings. Here's the same com.luo.ibatis using this approach:
         </p>
 
         <source><![CDATA[<resultMap id="blogResult" type="Blog">
@@ -1610,8 +1610,8 @@ public class User {
          at once and return a resultset per each one. This can be used to hit the database just once 
          and return related data without using a join.</p>
 
-        <p>In the com.luo.example, the stored procedure executes the following queries and returns two result sets.
-          The first will contain Blogs and the second Authors.</p>
+        <p>In the com.luo.ibatis, the stored procedure executes the following queries and returns two result sets.
+            The first will contain Blogs and the second Authors.</p>
 
         <source><![CDATA[SELECT * FROM BLOG WHERE ID = #{id}
 
@@ -1660,8 +1660,8 @@ SELECT * FROM AUTHOR WHERE ID = #{id}]]></source>
         </p>
 
         <p>
-          To continue with our com.luo.example above, a Blog only had one Author. But a Blog has many Posts. On the
-          blog class, this would be represented by something like:
+            To continue with our com.luo.ibatis above, a Blog only had one Author. But a Blog has many Posts. On the
+            blog class, this would be represented by something like:
         </p>
 
         <source><![CDATA[private List<Post> posts;]]></source>
@@ -1847,7 +1847,7 @@ SELECT * FROM POST WHERE BLOG_ID = #{id}]]></source>
 </resultMap>]]></source>
 
         <p>
-          In this com.luo.example, MyBatis would retrieve each record from the result set and compare its vehicle type
+          In this com.luo.ibatis, MyBatis would retrieve each record from the result set and compare its vehicle type
           value. If it matches any of the discriminator cases, then it will use the <code>resultMap</code> specified by the
           case. This is done exclusively, so in other words, the rest of the resultMap is ignored (unless it
           is extended, which we talk about in a second). If none of the cases match, then MyBatis simply uses
@@ -2119,9 +2119,10 @@ SELECT * FROM POST WHERE BLOG_ID = #{id}]]></source>
         <source><![CDATA[<cache type="com.domain.something.MyCustomCache"/>]]></source>
 
         <p>
-          This com.luo.example demonstrates how to use a custom cache implementation. The class specified in the type
-          attribute must implement the org.apache.ibatis.cache.Cache interface and provide a constructor that gets 
-          an String id as an argument. This interface is one of the more complex in the MyBatis framework, but simple given what it does.
+            This com.luo.ibatis demonstrates how to use a custom cache implementation. The class specified in the type
+            attribute must implement the org.apache.ibatis.cache.Cache interface and provide a constructor that gets
+            an String id as an argument. This interface is one of the more complex in the MyBatis framework, but simple
+            given what it does.
         </p>
 
         <source><![CDATA[public interface Cache {
@@ -2136,7 +2137,7 @@ SELECT * FROM POST WHERE BLOG_ID = #{id}]]></source>
 
         <p>
           To configure your cache, simply add public JavaBeans properties to your Cache implementation, and
-          pass properties via the cache Element, for com.luo.example, the following would call a method called
+          pass properties via the cache Element, for com.luo.ibatis, the following would call a method called
           <code>setCacheFile(String file)</code> on your Cache implementation:
         </p>
 
@@ -2178,11 +2179,11 @@ SELECT * FROM POST WHERE BLOG_ID = #{id}]]></source>
 <delete ... flushCache="true"/>]]></source>
 
         <p>
-          Since that's the default, you obviously should never explicitly configure a statement that way.
-          Instead, only set the flushCache and useCache attributes if you want to change the default behavior.
-          For com.luo.example, in some cases you may want to exclude the results of a particular select statement from
-          the cache, or you might want a select statement to flush the cache. Similarly, you may have some
-          update statements that don't need to flush the cache upon execution.
+            Since that's the default, you obviously should never explicitly configure a statement that way.
+            Instead, only set the flushCache and useCache attributes if you want to change the default behavior.
+            For com.luo.ibatis, in some cases you may want to exclude the results of a particular select statement from
+            the cache, or you might want a select statement to flush the cache. Similarly, you may have some
+            update statements that don't need to flush the cache upon execution.
         </p>
 
           <h4>cache-ref</h4>

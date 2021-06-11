@@ -16,6 +16,7 @@
 package com.luo.ibatis.mapping;
 
 
+import com.luo.ibatis.cache.ArcherCache;
 import com.luo.ibatis.executor.keygen.KeyGenerator;
 import com.luo.ibatis.executor.keygen.NoKeyGenerator;
 import com.luo.ibatis.logging.ArcherLogFactory;
@@ -49,7 +50,7 @@ public final class ArcherMappedStatement {
   private String databaseId;
   private String[] resultSets;
 
-//  private Cache cache; // 二级缓存实例
+  private ArcherCache cache; // 二级缓存实例
   private ArcherSqlSource sqlSource; // 解析SQL语句生成的SqlSource实例
   private String resource; // Mapper资源路径
   private ArcherConfiguration configuration; // Configuration对象的引用
@@ -125,10 +126,10 @@ public final class ArcherMappedStatement {
       return this;
     }
 
-//    public Builder cache(Cache cache) {
-//      mappedStatement.cache = cache;
-//      return this;
-//    }
+    public Builder cache(ArcherCache cache) {
+      mappedStatement.cache = cache;
+      return this;
+    }
 
     public Builder flushCacheRequired(boolean flushCacheRequired) {
       mappedStatement.flushCacheRequired = flushCacheRequired;
@@ -244,9 +245,9 @@ public final class ArcherMappedStatement {
     return resultMaps;
   }
 
-//  public Cache getCache() {
-//    return cache;
-//  }
+  public ArcherCache getCache() {
+    return cache;
+  }
 
   public boolean isFlushCacheRequired() {
     return flushCacheRequired;

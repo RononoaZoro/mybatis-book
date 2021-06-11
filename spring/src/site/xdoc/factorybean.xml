@@ -155,7 +155,7 @@ public SqlSessionFactory sqlSessionFactory() {
         can contain Ant-style patterns to load all
         files in a directory or to
         recursively search all paths from a base
-        location. For com.luo.example:
+        location. For com.luo.ibatis:
       </p>
       
         <source><![CDATA[
@@ -205,7 +205,7 @@ public SqlSessionFactory sqlSessionFactory() {
         <span class="label important">NOTE</span>
         Since 1.3.0, <code>configuration</code> property has been added.
         It can be specified a <code>Configuration</code> instance directly without MyBatis XML configuration file.
-        For com.luo.example:
+        For com.luo.ibatis:
       </p>
 
       <source><![CDATA[

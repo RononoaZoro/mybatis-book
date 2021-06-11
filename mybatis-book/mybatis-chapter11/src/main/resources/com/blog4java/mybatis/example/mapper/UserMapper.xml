@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.blog4java.mybatis.com.luo.example.mapper.UserMapper">
+<mapper namespace="com.blog4java.mybatis.com.luo.ibatis.mapper.UserMapper">
 
     <resultMap id="detailMap" type="com.blog4java.mybatis.com.luo.example.entity.User">
         <collection property="orders" ofType="com.blog4java.mybatis.com.luo.example.entity.Order"
-                    select="com.blog4java.mybatis.com.luo.example.mapper.OrderMapper.listOrdersByUserId"
+                    select="com.blog4java.mybatis.com.luo.ibatis.mapper.OrderMapper.listOrdersByUserId"
                     javaType="java.util.ArrayList"
                     column="id">
         </collection>
@@ -32,9 +32,9 @@
     
     <resultMap id="detailMapForDiscriminator" type="com.blog4java.mybatis.com.luo.example.entity.User">
         <discriminator javaType="String" column="gender">
-            <case value="female" resultType="com.blog4java.mybatis.com.luo.example.entity.User">
+            <case value="female" resultType="com.blog4java.mybatis.com.luo.ibatis.entity.User">
                 <collection property="orders" ofType="com.blog4java.mybatis.com.luo.example.entity.Order"
-                            select="com.blog4java.mybatis.com.luo.example.mapper.OrderMapper.listOrdersByUserId"
+                            select="com.blog4java.mybatis.com.luo.ibatis.mapper.OrderMapper.listOrdersByUserId"
                             javaType="java.util.ArrayList"
                             column="id">
                 </collection>

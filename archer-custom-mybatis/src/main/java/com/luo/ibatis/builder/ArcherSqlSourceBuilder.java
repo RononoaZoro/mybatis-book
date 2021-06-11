@@ -38,6 +38,7 @@ public class ArcherSqlSourceBuilder extends ArcherBaseBuilder {
   public ArcherSqlSourceBuilder(ArcherConfiguration configuration) {
     super(configuration);
   }
+
   public ArcherSqlSource parse(String originalSql, Class<?> parameterType, Map<String, Object> additionalParameters) {
     // ParameterMappingTokenHandler为Mybatis参数映射处理器，用于处理SQL中的#{}参数占位符
     ParameterMappingTokenHandler handler = new ParameterMappingTokenHandler(configuration, parameterType, additionalParameters);

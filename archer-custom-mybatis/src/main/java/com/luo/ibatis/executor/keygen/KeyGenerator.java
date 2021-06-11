@@ -15,13 +15,18 @@
  */
 package com.luo.ibatis.executor.keygen;
 
+import com.luo.ibatis.executor.ArcherExecutor;
+import com.luo.ibatis.mapping.ArcherMappedStatement;
+
+import java.sql.Statement;
+
 /**
  * @author Clinton Begin
  */
 public interface KeyGenerator {
 
-//  void processBefore(Executor executor, MappedStatement ms, Statement stmt, Object parameter);
+  void processBefore(ArcherExecutor executor, ArcherMappedStatement ms, Statement stmt, Object parameter);
 
-//  void processAfter(Executor executor, MappedStatement ms, Statement stmt, Object parameter);
+  void processAfter(ArcherExecutor executor, ArcherMappedStatement ms, Statement stmt, Object parameter);
 
 }

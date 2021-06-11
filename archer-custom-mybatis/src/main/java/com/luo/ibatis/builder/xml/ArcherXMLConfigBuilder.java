@@ -27,14 +27,27 @@ public class ArcherXMLConfigBuilder extends ArcherBaseBuilder {
     private final ReflectorFactory localReflectorFactory = new DefaultReflectorFactory();
 
     public ArcherXMLConfigBuilder(Reader reader) {
-        this(new XPathParser(reader, true, null, new ArcherXMLMapperEntityResolver()), null);
+        this(new XPathParser(reader, true, null, new ArcherXMLMapperEntityResolver()), null, null);
     }
 
-    private ArcherXMLConfigBuilder(XPathParser parser, String environment) {
+    public ArcherXMLConfigBuilder(Reader reader, String environment, Properties props) {
+        this(new XPathParser(reader, true, props, new ArcherXMLMapperEntityResolver()), environment, props);
+    }
+
+    public ArcherXMLConfigBuilder(InputStream inputStream, String environment) {
+        this(inputStream, environment, null);
+    }
+
+    public ArcherXMLConfigBuilder(InputStream inputStream, String environment, Properties props) {
+        this(new XPathParser(inputStream, true, props, new ArcherXMLMapperEntityResolver()), environment, props);
+    }
+
+    private ArcherXMLConfigBuilder(XPathParser parser, String environment, Properties props) {
         super(new ArcherConfiguration());
         this.parsed = false;
         this.parser = parser;
         this.environment = environment;
+//        this.configuration.setVariables(props);
     }
 
     public ArcherConfiguration parse() {
@@ -99,7 +112,7 @@ public class ArcherXMLConfigBuilder extends ArcherBaseBuilder {
     private void settingsElement(Properties props) throws Exception {
 //        configuration.setDefaultExecutorType(ExecutorType.valueOf(props.getProperty("defaultExecutorType", "SIMPLE")));
         @SuppressWarnings("unchecked")
-        Class<? extends Log> logImpl = (Class<? extends Log>)resolveClass(props.getProperty("logImpl"));
+        Class<? extends Log> logImpl = (Class<? extends Log>) resolveClass(props.getProperty("logImpl"));
         configuration.setLogImpl(logImpl);
     }
 

@@ -95,14 +95,14 @@ SqlSessionFactory sqlSessionFactory =
   </mappers>
 </configuration>]]></source>
       <p>
-        While there is a lot more to the XML configuration file, the
-        above com.luo.example points out the most critical parts. Notice the
-        XML header, required to validate the XML document. The body
-        of the environment element contains the environment
-        configuration for transaction management and connection
-        pooling. The mappers element contains a list of mappers –
-        the XML files and/or annotated Java interface classes that
-        contain the SQL code and mapping definitions.
+          While there is a lot more to the XML configuration file, the
+          above com.luo.ibatis points out the most critical parts. Notice the
+          XML header, required to validate the XML document. The body
+          of the environment element contains the environment
+          configuration for transaction management and connection
+          pooling. The mappers element contains a list of mappers –
+          the XML files and/or annotated Java interface classes that
+          contain the SQL code and mapping definitions.
       </p>
     </subsection>
     <subsection name="Building SqlSessionFactory without XML">
@@ -152,7 +152,7 @@ SqlSessionFactory sqlSessionFactory =
       <source><![CDATA[SqlSession session = sqlSessionFactory.openSession();
 try {
   Blog blog = session.selectOne(
-    "org.mybatis.com.luo.example.BlogMapper.selectBlog", 101);
+    "org.mybatis.com.luo.ibatis.BlogMapper.selectBlog", 101);
 } finally {
   session.close();
 }]]></source>
@@ -188,38 +188,38 @@ try {
         run, here are a couple of examples.
       </p>
       <p>
-        In either of the examples above, the statements could have been
-        defined by either XML or Annotations. Let's take a look at XML
-        first. The full set of features provided by MyBatis can be realized
-        by using the XML based mapping language that has made MyBatis
-        popular over the years. If you've used MyBatis before, the concept
-        will be familiar to you, but there have been numerous improvements
-        to the XML mapping documents that will become clear later. Here is
-        an com.luo.example of an XML based mapped statement that would satisfy the
-        above SqlSession calls.
+          In either of the examples above, the statements could have been
+          defined by either XML or Annotations. Let's take a look at XML
+          first. The full set of features provided by MyBatis can be realized
+          by using the XML based mapping language that has made MyBatis
+          popular over the years. If you've used MyBatis before, the concept
+          will be familiar to you, but there have been numerous improvements
+          to the XML mapping documents that will become clear later. Here is
+          an com.luo.ibatis of an XML based mapped statement that would satisfy the
+          above SqlSession calls.
       </p>
       <source><![CDATA[<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.mybatis.com.luo.example.BlogMapper">
+<mapper namespace="org.mybatis.com.luo.ibatis.BlogMapper">
   <select id="selectBlog" resultType="Blog">
     select * from Blog where id = #{id}
   </select>
 </mapper>]]></source>
       <p>
-          While this looks like a lot of overhead for this simple com.luo.example, it is
+          While this looks like a lot of overhead for this simple com.luo.ibatis, it is
           actually very light. You can define as many mapped statements in a
           single mapper XML file as you like, so you get a lot of mileage out
           of the XML header and doctype declaration. The rest of the file is
           pretty self explanatory. It defines a name for the mapped statement
-          “selectBlog”, in the namespace “org.mybatis.com.luo.example.BlogMapper”,
+          “selectBlog”, in the namespace “org.mybatis.com.luo.ibatis.BlogMapper”,
           which would allow you to call it by specifying the fully qualified
-          name of “org.mybatis.com.luo.example.BlogMapper.selectBlog”, as we did above
+          name of “org.mybatis.com.luo.ibatis.BlogMapper.selectBlog”, as we did above
           in the following com.luo.example:
       </p>
       <source><![CDATA[Blog blog = session.selectOne(
-  "org.mybatis.com.luo.example.BlogMapper.selectBlog", 101);]]></source>
+  "org.mybatis.com.luo.ibatis.BlogMapper.selectBlog", 101);]]></source>
       <p>
         Notice how similar this is to calling a method on a fully qualified Java
         class, and there's a reason for that. This name can be directly
@@ -274,10 +274,10 @@ Blog blog = mapper.selectBlog(101);]]></source>
       </ul>
       <hr/>
       <p>
-        There's one more trick to Mapper classes like BlogMapper. Their mapped
-        statements don't need to be mapped with XML at all. Instead they can
-        use Java Annotations. For com.luo.example, the XML above could be eliminated
-        and replaced with:
+          There's one more trick to Mapper classes like BlogMapper. Their mapped
+          statements don't need to be mapped with XML at all. Instead they can
+          use Java Annotations. For com.luo.ibatis, the XML above could be eliminated
+          and replaced with:
       </p>
       <source><![CDATA[package org.mybatis.com.luo.example;
 public interface BlogMapper {
@@ -367,18 +367,18 @@ try {
         </p>
       <h4>Mapper Instances</h4>
         <p>
-          Mappers are interfaces that you create to bind to your mapped statements.
-          Instances of the mapper interfaces are acquired from the
-          SqlSession. As such, technically the broadest scope of any mapper
-          instance is the same as the SqlSession from which they were
-          requested. However, the best scope for mapper instances is method
-          scope. That is, they should be requested within the method that
-          they are used, and then be discarded. They do not need to be closed
-          explicitly. While it's not a problem to keep them around throughout
-          a request, similar to the SqlSession, you might find that managing
-          too many resources at this level will quickly get out of hand. Keep
-          it simple, keep Mappers in the method scope. The following com.luo.example
-          demonstrates this practice.
+            Mappers are interfaces that you create to bind to your mapped statements.
+            Instances of the mapper interfaces are acquired from the
+            SqlSession. As such, technically the broadest scope of any mapper
+            instance is the same as the SqlSession from which they were
+            requested. However, the best scope for mapper instances is method
+            scope. That is, they should be requested within the method that
+            they are used, and then be discarded. They do not need to be closed
+            explicitly. While it's not a problem to keep them around throughout
+            a request, similar to the SqlSession, you might find that managing
+            too many resources at this level will quickly get out of hand. Keep
+            it simple, keep Mappers in the method scope. The following com.luo.ibatis
+            demonstrates this practice.
         </p>
         <source><![CDATA[SqlSession session = sqlSessionFactory.openSession();
 try {

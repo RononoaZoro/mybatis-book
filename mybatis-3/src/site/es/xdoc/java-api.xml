@@ -507,7 +507,7 @@ try (SqlSession session = sqlSessionFactory.openSession()) {
 @SelectKey(statement="call identity()", keyProperty="nameId", before=<strong>false</strong>, resultType=<strong>int.class</strong>)
 <strong>int</strong> insertTable2(Name name);</source>
 
-  <p>This com.luo.example shows using the <code>@Flush</code> annotation to call the <code>SqlSession#flushStatements()</code>:</p>
+  <p>This com.luo.ibatis shows using the <code>@Flush</code> annotation to call the <code>SqlSession#flushStatements()</code>:</p>
   <source><![CDATA[@Flush
 List<BatchResult> flush();]]></source>
 
@@ -528,7 +528,7 @@ User getUserById(Integer id);
 @Select("select * from company where id = #{id}")
 Company getCompanyById(Integer id);</source>
 
-  <p>This com.luo.example shows solo parameter using the Sql Provider annotation:</p>
+  <p>This com.luo.ibatis shows solo parameter using the Sql Provider annotation:</p>
   <source><![CDATA[@SelectProvider(type = UserSqlBuilder.class, method = "buildGetUsersByName")
 List<User> getUsersByName(String name);
 
@@ -545,7 +545,7 @@ class UserSqlBuilder {
   }
 }]]></source>
 
-  <p>This com.luo.example shows multiple parameters using the Sql Provider annotation:</p>
+  <p>This com.luo.ibatis shows multiple parameters using the Sql Provider annotation:</p>
   <source><![CDATA[@SelectProvider(type = UserSqlBuilder.class, method = "buildGetUsersByName")
 List<User> getUsersByName(
     @Param("name") String name, @Param("orderByColumn") String orderByColumn);
